@@ -1,0 +1,64 @@
+<div class="row mb-4">
+  <div class="col">
+    <h2 class="fw-bold">{{isEdit ? 'Editar Servicio' : 'Nuevo Servicio'}}</h2>
+    <p class="text-muted">{{isEdit ? 'Actualice la información del servicio seleccionado.' : 'Gestione los detalles del servicio ofrecido en el hotel.'}}</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm col-lg-8 mx-auto">
+  <div class="card-body p-4">
+    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <div class="col-md-8">
+          <label class="form-label fw-bold">Nombre del Servicio</label>
+          <input type="text" formControlName="name" class="form-control" placeholder="Ej. Desayuno Continental">
+        </div>
+        
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Categoría</label>
+          <select formControlName="category" class="form-select">
+            <option value="FOOD">Alimentos</option>
+            <option value="WELLNESS">Bienestar</option>
+            <option value="GENERAL">General</option>
+            <option value="TRANSPORT">Transporte</option>
+          </select>
+        </div>
+        
+        <div class="col-12">
+          <label class="form-label fw-bold">Descripción</label>
+          <textarea formControlName="description" class="form-control" rows="3" placeholder="Detalle los beneficios del servicio..."></textarea>
+        </div>
+        
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Precio Unitario</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" formControlName="price" class="form-control">
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Icono (Clase BI)</label>
+          <div class="input-group">
+            <span class="input-group-text"><i [class]="'bi ' + serviceForm.get('icon')?.value"></i></span>
+            <input type="text" formControlName="icon" class="form-control">
+          </div>
+        </div>
+        
+        <div class="col-12 mt-4 pt-3 border-top">
+          <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" role="switch" id="statusSwitch" formControlName="isActive">
+            <label class="form-check-label fw-bold" for="statusSwitch">Servicio Activo / Visible</label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-4 pt-3 d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-light px-4" routerLink="/services">Cancelar</button>
+        <button type="submit" class="btn btn-primary px-4 shadow" [disabled]="serviceForm.invalid">
+          {{isEdit ? 'Guardar Cambios' : 'Crear Servicio'}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

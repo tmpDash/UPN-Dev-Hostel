@@ -1,0 +1,130 @@
+<div class="row g-4 mb-4" *ngIf="stats">
+  <div class="col-md-3">
+    <div class="card border-0 h-100">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="rounded-circle bg-light p-3">
+            <i class="bi bi-door-open text-primary-gold fs-4"></i>
+          </div>
+          <span class="badge bg-light text-success border-0 small">+2 hoy</span>
+        </div>
+        <h6 class="text-uppercase text-muted extra-small fw-bold mb-1" style="letter-spacing: 1px;">Habitaciones</h6>
+        <h2 class="luxury-title mb-0">{{ stats.totalRooms }}</h2>
+        <div class="progress mt-3" style="height: 4px;">
+          <div class="progress-bar bg-primary-gold" role="progressbar" style="width: 85%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-3">
+    <div class="card border-0 h-100">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="rounded-circle bg-light p-3">
+            <i class="bi bi-person-check text-primary-gold fs-4"></i>
+          </div>
+          <span class="badge bg-light text-primary-gold border-0 small">Óptimo</span>
+        </div>
+        <h6 class="text-uppercase text-muted extra-small fw-bold mb-1" style="letter-spacing: 1px;">Ocupación</h6>
+        <h2 class="luxury-title mb-0">{{ stats.occupancyRate }}%</h2>
+        <p class="mt-2 mb-0 extra-small text-muted">Tasa de rendimiento actual</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card border-0 h-100">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="rounded-circle bg-light p-3">
+            <i class="bi bi-calendar-heart text-primary-gold fs-4"></i>
+          </div>
+        </div>
+        <h6 class="text-uppercase text-muted extra-small fw-bold mb-1" style="letter-spacing: 1px;">Reservas Activas</h6>
+        <h2 class="luxury-title mb-0">{{ stats.totalReservations }}</h2>
+        <p class="mt-2 mb-0 extra-small text-muted">Flujo de huéspedes entrantes</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card border-0 h-100 bg-deep-navy">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="rounded-circle bg-white-10 p-3">
+            <i class="bi bi-cash-stack text-primary-gold fs-4"></i>
+          </div>
+        </div>
+        <h6 class="text-uppercase text-white-50 extra-small fw-bold mb-1" style="letter-spacing: 1px;">Ingresos Estimados</h6>
+        <h2 class="luxury-title text-white mb-0">S/ {{ stats.monthlyRevenue | number:'1.2-2' }}</h2>
+        <p class="mt-2 mb-0 extra-small text-white-50">Cierre de ciclo actual</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4" *ngIf="!loading">
+  <div class="col-md-8">
+    <div class="card border-0 h-100">
+      <div class="card-header bg-white border-0 p-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="luxury-title mb-0">Bitácora de Actividad</h5>
+          <button class="btn btn-link text-primary-gold text-decoration-none small fw-bold">Ver Todo</button>
+        </div>
+      </div>
+      <div class="card-body px-4 pb-4 pt-0">
+        <div class="d-flex align-items-center py-3 border-bottom-light" *ngFor="let res of recentReservations">
+          <div class="avatar-indicator me-3">
+             <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" class="rounded-circle" width="42">
+             <span class="status-dot" [class.bg-success]="res.status === 'CONFIRMADA'" [class.bg-warning]="res.status === 'PENDIENTE'"></span>
+          </div>
+          <div class="flex-grow-1">
+            <p class="mb-0 fw-bold small text-dark">{{ res.customerName }}</p>
+            <small class="text-muted extra-small">Reserva #{{ res.id }} - {{ res.roomType }}</small>
+          </div>
+          <div class="text-end">
+             <span class="badge-luxury confirmed extra-small" *ngIf="res.status === 'CONFIRMADA'">Ingreso</span>
+             <span class="badge-luxury pending extra-small" *ngIf="res.status === 'PENDIENTE'">Pendiente</span>
+          </div>
+        </div>
+        
+        <div class="text-center py-5" *ngIf="recentReservations.length === 0">
+           <i class="bi bi-inbox fs-2 text-muted opacity-25"></i>
+           <p class="text-muted small mt-2">Sin actividad reciente registrada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card border-0 h-100">
+      <div class="card-header bg-white border-0 p-4">
+        <h5 class="luxury-title mb-0">Estatus Operativo</h5>
+      </div>
+      <div class="card-body p-4">
+        <div class="text-center mb-5">
+           <div class="display-4 fw-bold text-deep-navy">{{ stats?.totalRooms }}</div>
+           <p class="text-muted small text-uppercase fw-bold" style="letter-spacing: 2px;">Capacidad de Planta</p>
+        </div>
+        
+        <div class="d-grid gap-3">
+          <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
+            <span class="small fw-bold text-muted">Reservas</span>
+            <span class="badge bg-white text-dark shadow-sm">{{ stats?.totalReservations }}</span>
+          </div>
+          <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
+            <span class="small fw-bold text-muted">Anulaciones</span>
+            <span class="badge bg-white text-danger shadow-sm">{{ stats?.cancellations }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center p-5" *ngIf="loading">
+  <div class="spinner-border text-primary-gold" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>

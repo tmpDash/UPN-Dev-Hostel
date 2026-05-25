@@ -1,0 +1,81 @@
+<div class="row mb-4 align-items-center">
+  <div class="col">
+    <h2 class="luxury-title mb-1">Directorio de Staff</h2>
+    <p class="text-muted small mb-0">Gestión de cuentas corporativas y privilegios de acceso.</p>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary d-flex align-items-center shadow-sm" routerLink="/users/new">
+      <i class="bi bi-person-plus me-2"></i>
+      Registrar Colaborador
+    </button>
+  </div>
+</div>
+
+<div class="card overflow-hidden">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-luxury align-middle mb-0">
+        <thead>
+          <tr>
+            <th class="ps-4">Perfil</th>
+            <th>Correo Corporativo</th>
+            <th>Departamento / Rol</th>
+            <th class="d-none d-lg-table-cell">Último Acceso</th>
+            <th>Estatus</th>
+            <th class="text-end pe-4">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users$ | async" class="transition-all">
+            <td class="ps-4">
+              <div class="d-flex align-items-center">
+                <div class="avatar-indicator me-3">
+                  <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0A192F&color=D4AF37" class="rounded-circle shadow-sm" width="38">
+                  <span class="status-dot" [class.bg-success]="user.status === 'ACTIVO'" [class.bg-danger]="user.status === 'INACTIVO'"></span>
+                </div>
+                <div>
+                  <div class="fw-bold text-dark small">{{user.fullName}}</div>
+                  <div class="text-muted extra-small">ID: #{{user.id}}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="small text-muted"><i class="bi bi-envelope me-1"></i> {{user.email}}</span>
+            </td>
+            <td>
+              <span [ngClass]="{
+                'badge-role': true,
+                'admin': user.role === 'ADMIN',
+                'supervisor': user.role === 'SUPERVISOR',
+                'receptionist': user.role === 'RECEPCIONISTA'
+              }">
+                {{user.role}}
+              </span>
+            </td>
+            <td class="d-none d-lg-table-cell">
+               <span class="small text-muted" *ngIf="user.lastAccess">
+                 <i class="bi bi-clock-history me-1"></i> {{user.lastAccess | date:'dd/MM HH:mm'}}
+               </span>
+               <span class="extra-small text-muted italic" *ngIf="!user.lastAccess">Nunca</span>
+            </td>
+            <td>
+              <span [class]="user.status === 'ACTIVO' ? 'text-success fw-bold small' : 'text-danger fw-bold small'">
+                <i class="bi bi-dot fs-4 align-middle"></i> {{user.status}}
+              </span>
+            </td>
+            <td class="text-end pe-4">
+              <div class="btn-group">
+                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/users/edit', user.id]" title="Editar Perfil">
+                  <i class="bi bi-pencil-square text-primary-gold"></i>
+                </button>
+                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(user.id)" title="Dar de Baja">
+                  <i class="bi bi-shield-x text-danger"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="sidebar d-flex flex-column p-4">
+  <div class="d-flex align-items-center mb-4 text-decoration-none">
+    <img src="/assets/img/logo.png" alt="Logo" width="45" class="me-3 rounded shadow-sm">
+    <div class="d-flex flex-column">
+      <span class="fs-5 fw-bold text-white mb-0" style="font-family: 'Playfair Display', serif;">LUXURY</span>
+      <span class="text-primary-gold small" style="letter-spacing: 2px;">CONCIERGE</span>
+    </div>
+  </div>
+  <div class="sidebar-divider mb-4"></div>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item" *ngIf="canAccess('dashboard')">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white d-flex align-items-center mb-2">
+        <i class="bi bi-speedometer2 me-2"></i>
+        Dashboard
+      </a>
+    </li>
+    <li *ngIf="canAccess('reservations')">
+      <a routerLink="/reservations" routerLinkActive="active"
+        class="nav-link text-white d-flex align-items-center mb-2">
+        <i class="bi bi-calendar-check me-2"></i>
+        Reservas
+      </a>
+    </li>
+    <li *ngIf="canAccess('services')">
+      <a routerLink="/services" routerLinkActive="active" class="nav-link text-white d-flex align-items-center mb-2">
+        <i class="bi bi-bell me-2"></i>
+        Servicios
+      </a>
+    </li>
+    <li *ngIf="canAccess('reports')">
+      <a routerLink="/reports" routerLinkActive="active" class="nav-link text-white d-flex align-items-center mb-2">
+        <i class="bi bi-bar-chart-line me-2"></i>
+        Reportes
+      </a>
+    </li>
+    <li *ngIf="canAccess('users')">
+      <a routerLink="/users" routerLinkActive="active" class="nav-link text-white d-flex align-items-center mb-2">
+        <i class="bi bi-people me-2"></i>
+        Usuarios
+      </a>
+    </li>
+  </ul>
+  <hr>
+  <div class="dropdown" *ngIf="currentUser$ | async as user">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0D47A1&color=fff" alt="" width="32" height="32" class="rounded-circle me-2">
+      <div class="d-flex flex-column">
+        <strong class="small">{{user.fullName}}</strong>
+        <span class="text-white-50" style="font-size: 0.7rem;">{{user.role}}</span>
+      </div>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+      <li><a class="dropdown-item" routerLink="/settings/profile">Perfil</a></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><a class="dropdown-item" (click)="onLogout()" style="cursor: pointer;">Cerrar Sesión</a></li>
+    </ul>
+  </div>
+</div>

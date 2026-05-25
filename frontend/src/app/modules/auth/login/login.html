@@ -1,0 +1,39 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header text-center mb-5">
+      <img src="/assets/img/logo.png" alt="Hotel Logo" width="80" class="mb-3 rounded shadow">
+      <h2 class="mt-2">HOTEL LUXURY UPN</h2>
+      <p>Luxury & Excellence</p>
+    </div>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="username" class="form-label">Identificación</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+          <input type="text" id="username" formControlName="username" class="form-control" placeholder="Nombre de usuario">
+        </div>
+      </div>
+      
+      <div class="mb-5">
+        <label for="password" class="form-label">Clave de Acceso</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+          <input type="password" id="password" formControlName="password" class="form-control" placeholder="••••••••">
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-login w-100" [disabled]="loginForm.invalid">
+        ACCEDER AL PORTAL
+      </button>
+      
+      <div *ngIf="error" class="alert alert-danger mt-4 py-2 text-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i> {{error}}
+      </div>
+    </form>
+    
+    <div class="text-center mt-5">
+      <small style="color: rgba(255,255,255,0.4);">&copy; 2026 Concierge Management System</small>
+    </div>
+  </div>
+</div>

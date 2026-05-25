@@ -1,0 +1,55 @@
+<div class="row mb-4">
+  <div class="col">
+    <h2 class="fw-bold">Servicios del Hotel</h2>
+    <p class="text-muted">Gestione los servicios disponibles para los huéspedes.</p>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary d-flex align-items-center" routerLink="/services/new">
+      <i class="bi bi-plus-lg me-2"></i>
+      Nuevo Servicio
+    </button>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let service of services$ | async">
+    <div class="card h-100 border-0 shadow-sm overflow-hidden service-card" [class.opacity-75]="!service.isActive">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="service-icon-bg bg-primary-custom text-white rounded-3 p-3">
+            <i [class]="'bi ' + service.icon + ' fs-3'"></i>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" 
+                   [checked]="service.isActive" 
+                   (change)="onToggleStatus(service.id)">
+          </div>
+        </div>
+        
+        <h5 class="card-title fw-bold mb-1">{{service.name}}</h5>
+        <span class="badge bg-light text-dark mb-3 border">{{service.category}}</span>
+        
+        <p class="card-text text-muted small mb-4">
+          {{service.description}}
+        </p>
+        
+        <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
+          <span class="fw-bold fs-5 text-primary-custom" *ngIf="service.price > 0">{{service.price | currency}}</span>
+          <span class="fw-bold fs-5 text-success" *ngIf="service.price === 0">Gratis</span>
+          <div class="dropdown">
+            <button class="btn btn-light btn-sm rounded-circle" data-bs-toggle="dropdown">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="['/services/edit', service.id]"><i class="bi bi-pencil me-2"></i>Editar</a></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!service.isActive" class="inactive-overlay">
+        <span class="badge bg-dark px-3 py-2">DESACTIVADO</span>
+      </div>
+    </div>
+  </div>
+</div>

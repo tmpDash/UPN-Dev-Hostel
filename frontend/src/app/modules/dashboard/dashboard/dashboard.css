@@ -1,0 +1,20 @@
+/* Dashboard Specific Styles */
+.card-body h3 {
+  letter-spacing: -1px;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.rounded-circle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

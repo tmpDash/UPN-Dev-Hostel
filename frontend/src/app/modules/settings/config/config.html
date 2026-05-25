@@ -1,0 +1,59 @@
+<div class="row mb-4">
+  <div class="col">
+    <h2 class="fw-bold">Configuración del Sistema</h2>
+    <p class="text-muted">Ajuste los parámetros generales de la plataforma.</p>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm p-4 col-lg-9 mx-auto">
+  <div class="mb-4 pb-3 border-bottom">
+    <h5 class="fw-bold mb-3"><i class="bi bi-globe me-2 text-primary"></i>Localización y Moneda</h5>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label small fw-bold">Moneda Principal</label>
+        <select class="form-select" [(ngModel)]="settings.currency">
+          <option value="USD">Dólar Estadounidense (USD)</option>
+          <option value="PEN">Soles Peruanos (PEN)</option>
+          <option value="EUR">Euro (EUR)</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label small fw-bold">Idioma del Sistema</label>
+        <select class="form-select" [(ngModel)]="settings.language">
+          <option value="ES">Español</option>
+          <option value="EN">Inglés</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-4 pb-3 border-bottom">
+    <h5 class="fw-bold mb-3"><i class="bi bi-bell me-2 text-primary"></i>Preferencias de Notificación</h5>
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" role="switch" id="emailNotif" [(ngModel)]="settings.emailNotifications">
+      <label class="form-check-label" for="emailNotif">Recibir alertas de reservas por correo electrónico</label>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="backupNotif" [(ngModel)]="settings.autoBackup">
+      <label class="form-check-label" for="backupNotif">Backup automático de base de datos semanal</label>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="fw-bold mb-3"><i class="bi bi-palette me-2 text-primary"></i>Apariencia</h5>
+    <div class="d-flex gap-3">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="theme" id="themeLight" value="LIGHT" [(ngModel)]="settings.theme">
+        <label class="form-check-label" for="themeLight">Modo Claro</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="theme" id="themeDark" value="DARK" [(ngModel)]="settings.theme">
+        <label class="form-check-label" for="themeDark">Modo Oscuro</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-end pt-3">
+    <button class="btn btn-primary px-5 shadow" (click)="onSave()">Guardar Ajustes</button>
+  </div>
+</div>

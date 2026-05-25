@@ -1,0 +1,18 @@
+<!-- Modal de Confirmación Estilo Bootstrap 5 -->
+<div class="modal fade" id="sharedConfirmModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-white border-0 pt-4 px-4">
+        <h5 class="modal-title fw-bold fs-4">{{title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onCancel()"></button>
+      </div>
+      <div class="modal-body px-4 py-3">
+        <p class="text-muted fs-5 mb-0">{{message}}</p>
+      </div>
+      <div class="modal-footer border-0 pb-4 px-4 pt-0">
+        <button type="button" class="btn btn-light px-4 py-2 fw-medium" data-bs-dismiss="modal" (click)="onCancel()">{{cancelText}}</button>
+        <button type="button" class="btn btn-primary px-4 py-2 fw-bold shadow-sm" data-bs-dismiss="modal" (click)="onConfirm()">{{confirmText}}</button>
+      </div>
+    </div>
+  </div>
+</div>

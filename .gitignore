@@ -1,0 +1,73 @@
+# =========================================================================
+# SYSTEM & OS FILES
+# =========================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# =========================================================================
+# IDEs & EDITORS
+# =========================================================================
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.history/
+.settings/
+.project
+.classpath
+.factorypath
+*.launch
+
+# =========================================================================
+# NODE & ANGULAR (Frontend)
+# =========================================================================
+# Ignore node_modules globally (in root or any subfolder like frontend/node_modules)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Angular build and cache folders
+.angular/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+/frontend/dist/
+/frontend/.angular/
+
+# Miscellaneous web tests and coverage
+/coverage/
+testem.log
+/typings/
+__screenshots__/
+.sass-cache/
+connect.lock
+libpeerconnection.log
+
+# =========================================================================
+# JAVA & MAVEN (Backend)
+# =========================================================================
+# Ignore Maven build output globally
+target/
+*.class
+*.log
+*.lock
+
+# =========================================================================
+# SENSITIVE DATA & ENVIRONMENT VARIABLES
+# =========================================================================
+.env
+.env.local
+.env.*.local
+*.env
+secrets.properties
+credentials.xml
+

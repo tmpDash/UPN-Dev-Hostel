@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -40,13 +41,13 @@ public class HotelController {
 
     /** Create a new hotel */
     @PostMapping
-    public Hotel crear(@RequestBody Hotel hotel) {
+    public Hotel crear(@Valid @RequestBody Hotel hotel) {
         return service.crear(hotel);
     }
 
     /** Update an existing hotel */
     @PutMapping("/{id}")
-    public Hotel actualizar(@PathVariable Long id, @RequestBody Hotel hotel) {
+    public Hotel actualizar(@PathVariable Long id, @Valid @RequestBody Hotel hotel) {
         return service.actualizar(id, hotel);
     }
 

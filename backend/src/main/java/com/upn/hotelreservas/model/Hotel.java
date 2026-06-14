@@ -1,6 +1,8 @@
 package com.upn.hotelreservas.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 /**
@@ -14,10 +16,18 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
+    
+    @NotBlank(message = "La dirección es obligatoria")
     private String direccion;
+    
+    @NotBlank(message = "La ciudad es obligatoria")
     private String ciudad;
+    
+    @NotNull(message = "El número de habitaciones es obligatorio")
     private Integer habitaciones;
+    
     private LocalDate fechaCreacion;
 
     // ---------- Getters & Setters ----------

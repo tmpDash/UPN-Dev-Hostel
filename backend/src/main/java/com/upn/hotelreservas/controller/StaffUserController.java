@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,12 +34,12 @@ public class StaffUserController {
     }
 
     @PostMapping
-    public StaffUser crear(@RequestBody StaffUser user) {
+    public StaffUser crear(@Valid @RequestBody StaffUser user) {
         return service.guardar(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StaffUser> actualizar(@PathVariable Long id, @RequestBody StaffUser user) {
+    public ResponseEntity<StaffUser> actualizar(@PathVariable Long id, @Valid @RequestBody StaffUser user) {
         return service.buscarPorId(id)
                 .map(existing -> {
                     user.setId(id);

@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,12 +41,12 @@ public class ReservationController {
 
     @Operation(summary = "Crear nueva reserva", description = "Registra una nueva reserva en el sistema.")
     @PostMapping
-    public Reservation crear(@RequestBody Reservation reservation) {
+    public Reservation crear(@Valid @RequestBody Reservation reservation) {
         return service.guardar(reservation);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reservation> actualizar(@PathVariable Long id, @RequestBody Reservation reservation) {
+    public ResponseEntity<Reservation> actualizar(@PathVariable Long id, @Valid @RequestBody Reservation reservation) {
         return service.buscarPorId(id)
                 .map(existing -> {
                     reservation.setId(id);

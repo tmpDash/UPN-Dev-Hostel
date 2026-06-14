@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -31,7 +32,7 @@ public class AuthController {
 
     @Operation(summary = "Iniciar sesión", description = "Recibe credenciales y devuelve un token JWT junto con la información del usuario.")
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         log.info("Intento de login para el usuario: {}", request.getEmail());
         
         // Debug: Verificar si hay usuarios en la base de datos

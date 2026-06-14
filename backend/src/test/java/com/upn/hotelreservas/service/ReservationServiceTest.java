@@ -122,4 +122,25 @@ public class ReservationServiceTest {
         // Assert
         verify(repository, times(1)).deleteById(1L);
     }
+    @Test
+    void testGuardar_NullReservation_ThrowsException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            service.guardar(null);
+        });
+        assertEquals("La reserva no puede ser nula", exception.getMessage());
+        verify(repository, never()).save(any());
+    }
+
+    @Test
+    void testGuardar_InvalidDates_ThrowsException() {
+        Reservation invalidReservation = new Reservation();
+        invalidReservation.setCheckInDate(LocalDate.now().plusDays(2));
+        invalidReservation.setCheckOutDate(LocalDate.now().plusDays(1)); // checkout is before checkin
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            service.guardar(invalidReservation);
+        });
+        assertEquals("La fecha de check-out debe ser posterior al check-in", exception.getMessage());
+        verify(repository, never()).save(any());
+    }
 }

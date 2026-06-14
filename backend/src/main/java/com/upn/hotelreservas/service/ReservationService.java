@@ -28,6 +28,15 @@ public class ReservationService {
     }
 
     public Reservation guardar(Reservation reservation) {
+        if (reservation == null) {
+            throw new IllegalArgumentException("La reserva no puede ser nula");
+        }
+        if (reservation.getCheckInDate() != null && reservation.getCheckOutDate() != null) {
+            if (reservation.getCheckOutDate().isBefore(reservation.getCheckInDate()) || 
+                reservation.getCheckOutDate().isEqual(reservation.getCheckInDate())) {
+                throw new IllegalArgumentException("La fecha de check-out debe ser posterior al check-in");
+            }
+        }
         return repository.save(reservation);
     }
 

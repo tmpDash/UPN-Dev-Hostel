@@ -24,6 +24,12 @@ public class StaffUserService {
     }
 
     public StaffUser guardar(StaffUser user) {
+        if (user.getId() == null) {
+            Optional<StaffUser> existing = repository.findByEmail(user.getEmail());
+            if (existing.isPresent()) {
+                throw new IllegalArgumentException("Ya existe un usuario con el email: " + user.getEmail());
+            }
+        }
         return repository.save(user);
     }
 

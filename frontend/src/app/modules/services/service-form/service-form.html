@@ -1,62 +1,74 @@
-<div class="row mb-4">
-  <div class="col">
-    <h2 class="fw-bold">{{isEdit ? 'Editar Servicio' : 'Nuevo Servicio'}}</h2>
-    <p class="text-muted">{{isEdit ? 'Actualice la información del servicio seleccionado.' : 'Gestione los detalles del servicio ofrecido en el hotel.'}}</p>
-  </div>
+<!-- Page Header -->
+<div class="mb-8">
+  <h2 class="text-2xl font-bold text-gray-800 font-serif">{{isEdit ? 'Edit Service' : 'New Service'}}</h2>
+  <p class="text-sm text-gray-500 mt-1">{{isEdit ? 'Update selected service details.' : 'Manage details of services offered at the hotel.'}}</p>
 </div>
 
-<div class="card border-0 shadow-sm col-lg-8 mx-auto">
-  <div class="card-body p-4">
+<!-- Form Card -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm lg:w-2/3 max-w-4xl mx-auto">
+  <div class="p-6">
     <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
-      <div class="row g-3">
-        <div class="col-md-8">
-          <label class="form-label fw-bold">Nombre del Servicio</label>
-          <input type="text" formControlName="name" class="form-control" placeholder="Ej. Desayuno Continental">
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6">
+        
+        <div class="sm:col-span-8">
+          <label class="block text-sm font-medium mb-2 text-gray-700">Service Name</label>
+          <input type="text" formControlName="name" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900" placeholder="e.g. Continental Breakfast">
         </div>
         
-        <div class="col-md-4">
-          <label class="form-label fw-bold">Categoría</label>
-          <select formControlName="category" class="form-select">
-            <option value="FOOD">Alimentos</option>
-            <option value="WELLNESS">Bienestar</option>
+        <div class="sm:col-span-4">
+          <label class="block text-sm font-medium mb-2 text-gray-700">Category</label>
+          <select formControlName="category" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
+            <option value="FOOD">Food & Beverage</option>
+            <option value="WELLNESS">Wellness</option>
             <option value="GENERAL">General</option>
-            <option value="TRANSPORT">Transporte</option>
+            <option value="TRANSPORT">Transport</option>
           </select>
         </div>
         
-        <div class="col-12">
-          <label class="form-label fw-bold">Descripción</label>
-          <textarea formControlName="description" class="form-control" rows="3" placeholder="Detalle los beneficios del servicio..."></textarea>
+        <div class="sm:col-span-12">
+          <label class="block text-sm font-medium mb-2 text-gray-700">Description</label>
+          <textarea formControlName="description" rows="3" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900" placeholder="Detail the service benefits..."></textarea>
         </div>
         
-        <div class="col-md-6">
-          <label class="form-label fw-bold">Precio Unitario</label>
-          <div class="input-group">
-            <span class="input-group-text">$</span>
-            <input type="number" formControlName="price" class="form-control">
+        <div class="sm:col-span-6">
+          <label class="block text-sm font-medium mb-2 text-gray-700">Unit Price</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <span class="text-gray-500">$</span>
+            </div>
+            <input type="number" formControlName="price" class="py-2.5 pl-8 pr-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
           </div>
         </div>
         
-        <div class="col-md-6">
-          <label class="form-label fw-bold">Icono (Clase BI)</label>
-          <div class="input-group">
-            <span class="input-group-text"><i [class]="'bi ' + serviceForm.get('icon')?.value"></i></span>
-            <input type="text" formControlName="icon" class="form-control">
+        <div class="sm:col-span-6">
+          <label class="block text-sm font-medium mb-2 text-gray-700">Icon (Bootstrap Icon Class)</label>
+          <div class="relative flex rounded-lg">
+            <span class="px-4 inline-flex items-center min-w-fit rounded-l-lg border border-r-0 border-gray-200 bg-gray-50 text-sm text-gray-500">
+              <i [class]="'bi ' + serviceForm.get('icon')?.value"></i>
+            </span>
+            <input type="text" formControlName="icon" class="py-2.5 px-4 block w-full border-gray-200 rounded-r-lg text-sm focus:border-slate-900 focus:ring-slate-900" placeholder="bi-cup-hot">
           </div>
         </div>
         
-        <div class="col-12 mt-4 pt-3 border-top">
-          <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" role="switch" id="statusSwitch" formControlName="isActive">
-            <label class="form-check-label fw-bold" for="statusSwitch">Servicio Activo / Visible</label>
+        <div class="sm:col-span-12 mt-4 pt-5 border-t border-gray-100">
+          <div class="flex items-center">
+            <label class="flex items-center cursor-pointer relative" for="statusSwitch">
+              <input type="checkbox" id="statusSwitch" formControlName="isActive" class="sr-only">
+              <div class="w-11 h-6 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out" [class.bg-slate-900]="serviceForm.get('isActive')?.value"></div>
+              <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ease-in-out shadow-sm" [class.translate-x-5]="serviceForm.get('isActive')?.value"></div>
+            </label>
+            <label for="statusSwitch" class="text-sm text-gray-700 ml-3 font-bold cursor-pointer">Servicio Activo / Visible</label>
           </div>
         </div>
+        
       </div>
       
-      <div class="mt-4 pt-3 d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-light px-4" routerLink="/services">Cancelar</button>
-        <button type="submit" class="btn btn-primary px-4 shadow" [disabled]="serviceForm.invalid">
-          {{isEdit ? 'Guardar Cambios' : 'Crear Servicio'}}
+      <div class="mt-8 pt-5 flex justify-end gap-x-2 border-t border-gray-100">
+        <button type="button" routerLink="/services" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+          Cancel
+        </button>
+        <button type="submit" [disabled]="serviceForm.invalid" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:pointer-events-none transition-colors shadow-sm">
+          {{isEdit ? 'Save Changes' : 'Create Service'}}
         </button>
       </div>
     </form>

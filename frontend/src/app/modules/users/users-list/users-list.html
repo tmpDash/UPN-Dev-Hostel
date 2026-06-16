@@ -1,81 +1,110 @@
-<div class="row mb-4 align-items-center">
-  <div class="col">
-    <h2 class="luxury-title mb-1">Directorio de Staff</h2>
-    <p class="text-muted small mb-0">Gestión de cuentas corporativas y privilegios de acceso.</p>
-  </div>
-  <div class="col-auto">
-    <button class="btn btn-primary d-flex align-items-center shadow-sm" routerLink="/users/new">
-      <i class="bi bi-person-plus me-2"></i>
-      Registrar Colaborador
-    </button>
+<!-- Page Header -->
+<div class="mb-8">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-800 font-serif">Directorio de Personal</h2>
+      <p class="text-sm text-gray-500 mt-1">Gestión de cuentas corporativas y privilegios de acceso.</p>
+    </div>
+    <div>
+      <a routerLink="/users/new" class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-lg font-semibold bg-slate-900 text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 transition-all text-sm shadow-sm">
+        <i class="bi bi-person-plus"></i>
+        Añadir Personal
+      </a>
+    </div>
   </div>
 </div>
 
-<div class="card overflow-hidden">
-  <div class="card-body p-0">
-    <div class="table-responsive">
-      <table class="table table-luxury align-middle mb-0">
-        <thead>
-          <tr>
-            <th class="ps-4">Perfil</th>
-            <th>Correo Corporativo</th>
-            <th>Departamento / Rol</th>
-            <th class="d-none d-lg-table-cell">Último Acceso</th>
-            <th>Estatus</th>
-            <th class="text-end pe-4">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users$ | async" class="transition-all">
-            <td class="ps-4">
-              <div class="d-flex align-items-center">
-                <div class="avatar-indicator me-3">
-                  <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0A192F&color=D4AF37" alt="User Avatar" class="rounded-circle shadow-sm" width="38" height="38" aria-hidden="true">
-                  <span class="status-dot" [class.bg-success]="user.status === 'ACTIVO'" [class.bg-danger]="user.status === 'INACTIVO'"></span>
-                </div>
-                <div>
-                  <div class="fw-bold text-dark small">{{user.fullName}}</div>
-                  <div class="text-muted extra-small">ID: #{{user.id}}</div>
-                </div>
+<!-- Table Card -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50 border-b border-gray-200">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Perfil</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Correo Corporativo</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Rol</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Último Acceso</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Estado</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-right">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Acciones</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let user of users$ | async" class="hover:bg-gray-50 transition-colors">
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <div class="flex items-center gap-x-3">
+              <div class="relative">
+                <img class="inline-block h-10 w-10 rounded-full shadow-sm" src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0F172A&color=fff" alt="Avatar">
+                <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white"
+                      [class.bg-green-500]="user.status === 'ACTIVO'" 
+                      [class.bg-red-500]="user.status === 'INACTIVO'"></span>
               </div>
-            </td>
-            <td>
-              <span class="small text-muted"><i class="bi bi-envelope me-1"></i> {{user.email}}</span>
-            </td>
-            <td>
-              <span [ngClass]="{
-                'badge-role': true,
-                'admin': user.role === 'ADMIN',
-                'supervisor': user.role === 'SUPERVISOR',
-                'receptionist': user.role === 'RECEPCIONISTA'
-              }">
-                {{user.role}}
-              </span>
-            </td>
-            <td class="d-none d-lg-table-cell">
-               <span class="small text-muted" *ngIf="user.lastAccess">
-                 <i class="bi bi-clock-history me-1"></i> {{user.lastAccess | date:'dd/MM HH:mm'}}
-               </span>
-               <span class="extra-small text-muted italic" *ngIf="!user.lastAccess">Nunca</span>
-            </td>
-            <td>
-              <span [class]="user.status === 'ACTIVO' ? 'text-success fw-bold small' : 'text-danger fw-bold small'">
-                <i class="bi bi-dot fs-4 align-middle"></i> {{user.status}}
-              </span>
-            </td>
-            <td class="text-end pe-4">
-              <div class="btn-group">
-                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/users/edit', user.id]" title="Editar Perfil" aria-label="Editar Perfil">
-                  <i class="bi bi-pencil-square text-primary-gold"></i>
-                </button>
-                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(user.id)" title="Dar de Baja" aria-label="Dar de Baja">
-                  <i class="bi bi-shield-x text-danger"></i>
-                </button>
+              <div class="grow">
+                <span class="block text-sm font-semibold text-gray-800">{{user.fullName}}</span>
+                <span class="block text-xs text-gray-500">ID: #{{user.id}}</span>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </div>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="text-sm text-gray-600 flex items-center gap-1.5"><i class="bi bi-envelope text-gray-400"></i> {{user.email}}</span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-medium border"
+                  [ngClass]="{
+                    'bg-slate-900 text-white border-slate-900': user.role === 'ADMIN',
+                    'bg-gray-100 text-gray-800 border-gray-200': user.role === 'SUPERVISOR',
+                    'bg-blue-50 text-blue-800 border-blue-200': user.role === 'RECEPCIONISTA'
+                  }">
+              {{user.role}}
+            </span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4 hidden lg:table-cell">
+            <span *ngIf="user.lastAccess" class="text-sm text-gray-600 flex items-center gap-1.5">
+              <i class="bi bi-clock-history text-gray-400"></i> {{user.lastAccess | date:'dd/MM HH:mm'}}
+            </span>
+            <span *ngIf="!user.lastAccess" class="text-xs italic text-gray-400">Nunca</span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium uppercase tracking-wide"
+                  [ngClass]="{
+                    'bg-green-50 text-green-700': user.status === 'ACTIVO',
+                    'bg-red-50 text-red-700': user.status === 'INACTIVO'
+                  }">
+              <span class="w-1.5 h-1.5 rounded-full" [ngClass]="user.status === 'ACTIVO' ? 'bg-green-500' : 'bg-red-500'"></span>
+              {{user.status === 'ACTIVO' ? 'Activo' : 'Inactivo'}}
+            </span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4 text-right">
+            <div class="relative group inline-block text-left">
+              <button type="button" class="py-2 px-2 inline-flex justify-center items-center gap-2 rounded-full border border-gray-200 font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-all text-sm">
+                <i class="bi bi-three-dots"></i>
+              </button>
+              
+              <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[10rem] bg-white shadow-md rounded-lg p-2 mt-2 border border-gray-100 absolute right-0 z-50">
+                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" [routerLink]="['/users/edit', user.id]">
+                  <i class="bi bi-pencil"></i>
+                  Editar
+                </a>
+                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-red-600 hover:bg-red-50" href="javascript:void(0);" (click)="onDelete(user.id)">
+                  <i class="bi bi-trash"></i>
+                  Eliminar
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

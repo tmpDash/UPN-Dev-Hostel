@@ -1,55 +1,78 @@
-<div class="row mb-4">
-  <div class="col">
-    <h2 class="fw-bold">Servicios del Hotel</h2>
-    <p class="text-muted">Gestione los servicios disponibles para los huéspedes.</p>
-  </div>
-  <div class="col-auto">
-    <button class="btn btn-primary d-flex align-items-center" routerLink="/services/new">
-      <i class="bi bi-plus-lg me-2"></i>
-      Nuevo Servicio
-    </button>
+<div class="mb-8">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-800 font-serif">Servicios del Hotel</h2>
+      <p class="text-sm text-gray-500 mt-1">Gestione los servicios disponibles para los huéspedes.</p>
+    </div>
+    <div>
+      <a routerLink="/services/new" class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-lg font-semibold bg-slate-900 text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 transition-all text-sm shadow-sm">
+        <i class="bi bi-plus-lg"></i>
+        Nuevo Servicio
+      </a>
+    </div>
   </div>
 </div>
 
-<div class="row g-4">
-  <div class="col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let service of services$ | async">
-    <div class="card h-100 border-0 shadow-sm overflow-hidden service-card" [class.opacity-75]="!service.isActive">
-      <div class="card-body p-4">
-        <div class="d-flex justify-content-between mb-3">
-          <div class="service-icon-bg bg-primary-custom text-white rounded-3 p-3">
-            <i [class]="'bi ' + service.icon + ' fs-3'"></i>
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" 
-                   [checked]="service.isActive" 
-                   (change)="onToggleStatus(service.id)">
-          </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+  <div *ngFor="let service of services$ | async; trackBy: trackByService" 
+       class="relative bg-white border border-gray-200 shadow-sm rounded-xl flex flex-col transition-all hover:shadow-md"
+       [class.opacity-60]="!(service.isActive === true || service.active === true)">
+    
+    <div class="p-5 md:p-6 flex flex-col h-full relative z-10">
+      
+      <div class="flex justify-between items-start mb-4">
+        <div class="w-12 h-12 flex items-center justify-center bg-slate-900 text-white rounded-xl shadow-sm">
+          <i [class]="'bi ' + service.icon + ' text-2xl'"></i>
         </div>
         
-        <h5 class="card-title fw-bold mb-1">{{service.name}}</h5>
-        <span class="badge bg-light text-dark mb-3 border">{{service.category}}</span>
-        
-        <p class="card-text text-muted small mb-4">
-          {{service.description}}
-        </p>
-        
-        <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top">
-          <span class="fw-bold fs-5 text-primary-custom" *ngIf="service.price > 0">{{service.price | currency}}</span>
-          <span class="fw-bold fs-5 text-success" *ngIf="service.price === 0">Gratis</span>
-          <div class="dropdown">
-            <button class="btn btn-light btn-sm rounded-circle" data-bs-toggle="dropdown">
+        <div class="flex items-center gap-3">
+          <label class="flex items-center cursor-pointer relative">
+            <input type="checkbox" class="sr-only" [checked]="service.isActive === true || service.active === true" (change)="onToggleStatus(service)">
+            <div class="w-11 h-6 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out" [class.bg-slate-900]="service.isActive === true || service.active === true"></div>
+            <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ease-in-out shadow-sm" [class.translate-x-5]="service.isActive === true || service.active === true"></div>
+          </label>
+          
+          <!-- Dropdown menu -->
+          <div class="relative group inline-block">
+            <button type="button" class="py-1 px-1.5 inline-flex justify-center items-center rounded-md text-gray-500 hover:bg-gray-100 transition-all">
               <i class="bi bi-three-dots-vertical"></i>
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" [routerLink]="['/services/edit', service.id]"><i class="bi bi-pencil me-2"></i>Editar</a></li>
-              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
-            </ul>
+
+            <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[10rem] bg-white shadow-md rounded-lg p-2 mt-2 border border-gray-100 absolute right-0 z-50 top-full">
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" [routerLink]="['/services/edit', service.id]">
+                <i class="bi bi-pencil"></i>
+                Editar
+              </a>
+              <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-red-600 hover:bg-red-50" href="javascript:void(0);" (click)="onDelete(service.id)">
+                <i class="bi bi-trash"></i>
+                Eliminar
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <div *ngIf="!service.isActive" class="inactive-overlay">
-        <span class="badge bg-dark px-3 py-2">DESACTIVADO</span>
+      
+      <div class="mb-3">
+        <h3 class="text-lg font-bold text-gray-800">{{service.name}}</h3>
+        <p class="text-xs font-semibold uppercase tracking-wider text-blue-600 mt-1">{{service.category}}</p>
       </div>
+      
+      <p class="text-sm text-gray-500 mb-6 flex-grow">
+        {{service.description}}
+      </p>
+      
+      <div class="flex items-center justify-between mt-auto">
+        <span class="text-lg font-bold text-slate-900" *ngIf="service.price > 0">{{service.price | currency}}</span>
+        <span class="text-lg font-bold text-green-600" *ngIf="service.price === 0">Gratis</span>
+      </div>
+      
+    </div>
+    
+    <!-- Overlay for inactive -->
+    <div *ngIf="!(service.isActive === true || service.active === true)" class="absolute inset-0 bg-white/40 rounded-xl pointer-events-none flex items-center justify-center z-20">
+      <span class="py-1 px-3 inline-flex items-center gap-x-1 text-xs font-bold bg-slate-900 text-white rounded-full uppercase tracking-widest shadow-md">
+        Desactivado
+      </span>
     </div>
   </div>
 </div>

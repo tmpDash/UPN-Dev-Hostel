@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReservationService } from '../services/reservation';
@@ -27,7 +27,8 @@ export class ReservationForm implements OnInit {
     private fb: FormBuilder,
     private reservationService: ReservationService,
     private hotelService: HotelServiceCatalogService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.reservationForm = this.fb.group({
       customerName: ['', Validators.required],
@@ -73,8 +74,14 @@ export class ReservationForm implements OnInit {
       });
     }
 
-    this.hotelService.getServices().subscribe(services => {
-      this.availableServices = services.filter(s => s.isActive);
+    this.hotelService.getServices().subscribe({
+      next: (services) => {
+        this.availableServices = services.filter(s => s.isActive === true || s.active === true || (s as any).isActive === 'true' || (s as any).active === 'true');
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error fetching services:', err);
+      }
     });
 
     // Escuchar cambios para recalcular precio

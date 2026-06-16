@@ -5,5 +5,6 @@ export interface HotelService {
   price: number;
   icon: string;
   category: 'FOOD' | 'WELLNESS' | 'GENERAL' | 'TRANSPORT';
-  isActive: boolean;
+  isActive?: boolean;
+  active?: boolean;
 }

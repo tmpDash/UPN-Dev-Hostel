@@ -1,20 +1,19 @@
-<div class="d-flex wrapper" [class.sidebar-collapsed]="!(sidebarVisible$ | async)">
+<div class="bg-gray-50 flex h-screen overflow-hidden">
+  
   <!-- Sidebar -->
-  <app-sidebar></app-sidebar>
+  <app-sidebar class="hidden lg:block z-50 flex-shrink-0" [class.block]="(sidebarVisible$ | async)" [class.hidden]="!(sidebarVisible$ | async)"></app-sidebar>
+
+  <!-- Mobile Overlay -->
+  <div *ngIf="(sidebarVisible$ | async)" (click)="toggleSidebar()" 
+       class="lg:hidden fixed inset-0 z-40 bg-gray-900/50 backdrop-blur-sm transition-opacity">
+  </div>
 
   <!-- Content -->
-  <div class="main-content flex-grow-1 transition-all">
+  <div class="flex-1 flex flex-col overflow-hidden lg:pl-64 transition-all duration-300">
     <app-navbar></app-navbar>
     
-    <main class="p-3 p-md-4">
+    <main class="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-8">
       <router-outlet></router-outlet>
     </main>
   </div>
-  
-  <!-- Overlay para móviles -->
-  <div class="sidebar-overlay d-md-none" 
-       *ngIf="(sidebarVisible$ | async)" 
-       (click)="toggleSidebar()">
-  </div>
-
 </div>

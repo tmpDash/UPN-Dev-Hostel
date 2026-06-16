@@ -1,240 +1,30 @@
-/* Luxury Hotel Design System */
-:root {
-  --primary-gold: #D4AF37;
-  --secondary-gold: #B8860B;
-  --deep-navy: #0A192F;
-  --sidebar-bg: #0F172A;
-  --bg-light: #F8F9FA;
-  --text-main: #1E293B;
-  --sidebar-width: 260px;
-  --transition-speed: 0.4s;
-  --card-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
-}
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
-/* Utility Classes */
-.text-primary-gold { color: var(--primary-gold) !important; }
-.bg-deep-navy { background-color: var(--deep-navy) !important; }
-.bg-primary-gold { background-color: var(--primary-gold) !important; }
-.bg-white-10 { background-color: rgba(255, 255, 255, 0.1) !important; }
-.extra-small { font-size: 0.65rem !important; text-transform: uppercase; }
-.border-bottom-light { border-bottom: 1px solid #F1F5F9; }
-
-.sidebar-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-}
-
-/* Avatar with status indicator */
-.avatar-indicator {
-  position: relative;
-  display: inline-block;
-}
-
-.status-dot {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid white;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-main);
-  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
 }
 
-h1, h2, h3, .luxury-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-}
-
-.cursor-pointer {
-  cursor: pointer !important;
-}
-
-/* Sidebar Styling */
-.sidebar {
-  width: var(--sidebar-width);
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
-  background-color: var(--sidebar-bg);
-  color: white;
-  z-index: 1050;
-  transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 10px 0 30px rgba(0,0,0,0.05);
-}
-
-.main-content {
-  margin-left: var(--sidebar-width);
-  min-height: 100vh;
-  transition: margin-left var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* UI Elements - Luxury Refresh */
-.card {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: var(--card-shadow);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.6) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 1);
-}
-
-/* Buttons */
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  padding: 0.6rem 1.5rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, var(--secondary-gold), var(--primary-gold));
-  transform: scale(1.02);
-}
-
-/* Custom Navigation */
-.nav-link {
-  color: rgba(255, 255, 255, 0.6);
-  padding: 0.8rem 1.5rem;
-  margin: 0.2rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-  color: white;
-  background: rgba(212, 175, 55, 0.1);
-}
-
-.nav-link.active {
-  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent) !important;
-  color: var(--primary-gold) !important;
-  border-left: 3px solid var(--primary-gold);
-}
-
-/* Status Badges - Luxury Theme */
-.badge-luxury {
-  padding: 0.5em 1em;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border: 1px solid transparent;
-}
-
-.badge-luxury.confirmed {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border-color: rgba(16, 185, 129, 0.2);
-}
-
-.badge-luxury.pending {
-  background: rgba(245, 158, 11, 0.1);
-  color: #f59e0b;
-  border-color: rgba(245, 158, 11, 0.2);
-}
-
-.badge-luxury.cancelled {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  border-color: rgba(239, 68, 68, 0.2);
-}
-
-/* Role Badges */
-.badge-role {
-  padding: 0.4em 0.8em;
-  border-radius: 20px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.badge-role.admin {
-  background-color: var(--deep-navy);
-  color: var(--primary-gold);
-  border: 1px solid var(--primary-gold);
-}
-
-.badge-role.supervisor {
-  background-color: #F1F5F9;
-  color: #475569;
-  border: 1px solid #E2E8F0;
-}
-
-.badge-role.receptionist {
-  background-color: rgba(212, 175, 55, 0.1);
-  color: var(--secondary-gold);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.table-luxury thead {
-  background-color: #F1F5F9;
-  border-bottom: 2px solid #E2E8F0;
-}
-
-.table-luxury th {
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  font-weight: 700;
-  color: #64748B;
-  padding: 1.2rem 1rem;
-}
-
-/* Inputs */
-.form-control {
-  border-radius: 10px;
-  border: 1px solid #E2E8F0;
-  padding: 0.75rem 1rem;
-}
-
-.form-control:focus {
-  border-color: var(--primary-gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-}
-
-/* Layout Collapsed States */
-.sidebar-collapsed .sidebar {
-  transform: translateX(-100%);
-}
-
-.sidebar-collapsed .main-content {
-  margin-left: 0;
-}
-
-@media (max-width: 991.98px) {
-  .main-content { margin-left: 0; }
-  .sidebar { transform: translateX(-100%); }
-  .wrapper:not(.sidebar-collapsed) .sidebar { transform: translateX(0); }
-  .sidebar-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); z-index: 1040;
-  }
+/* Base Preline/Tailwind setups */
+[type='text'],
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+  @apply border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-lg;
 }

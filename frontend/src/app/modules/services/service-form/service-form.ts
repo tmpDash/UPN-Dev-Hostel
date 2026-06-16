@@ -44,12 +44,18 @@ export class ServiceForm implements OnInit {
   onSubmit() {
     if (this.serviceForm.valid) {
       const id = this.route.snapshot.params['id'];
+      const formValue = this.serviceForm.value;
+      const payload = {
+        ...formValue,
+        active: formValue.isActive
+      };
+
       if (this.isEdit) {
-        this.hotelService.updateService(+id, this.serviceForm.value).subscribe(() => {
+        this.hotelService.updateService(+id, payload).subscribe(() => {
           this.router.navigate(['/services']);
         });
       } else {
-        this.hotelService.createService(this.serviceForm.value).subscribe(() => {
+        this.hotelService.createService(payload).subscribe(() => {
           this.router.navigate(['/services']);
         });
       }

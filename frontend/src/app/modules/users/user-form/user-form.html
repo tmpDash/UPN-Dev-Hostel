@@ -1,51 +1,54 @@
-<div class="row mb-4">
-  <div class="col">
-    <h2 class="fw-bold">{{ isEdit ? 'Editar Miembro del Staff' : 'Nuevo Miembro del Staff' }}</h2>
-    <p class="text-muted">{{ isEdit ? 'Actualice la información del usuario.' : 'Registre una nueva cuenta administrativa.' }}</p>
-  </div>
+<!-- Page Header -->
+<div class="mb-8">
+  <h2 class="text-2xl font-bold text-gray-800 font-serif">{{ isEdit ? 'Editar Personal' : 'Nuevo Miembro del Personal' }}</h2>
+  <p class="text-sm text-gray-500 mt-1">{{ isEdit ? 'Actualizar información del usuario.' : 'Registrar una nueva cuenta administrativa.' }}</p>
 </div>
 
-<div class="card border-0 shadow-sm col-lg-8">
-  <div class="card-body p-4">
+<!-- Form Card -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm lg:w-2/3">
+  <div class="p-6">
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label fw-medium">Nombre Completo</label>
-          <input type="text" formControlName="fullName" class="form-control" placeholder="Ej. Roberto Gómez">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+        
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-700">Nombre Completo</label>
+          <input type="text" formControlName="fullName" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900" placeholder="Ej. Roberto Gómez">
         </div>
         
-        <div class="col-md-6">
-          <label class="form-label fw-medium">Correo Electrónico</label>
-          <input type="email" formControlName="email" class="form-control" placeholder="roberto@hotel.com">
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-700">Correo Electrónico</label>
+          <input type="email" formControlName="email" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900" placeholder="roberto@luxuryhotel.com">
         </div>
         
-        <div class="col-md-6">
-          <label class="form-label fw-medium">Rol en el Sistema</label>
-          <select formControlName="role" class="form-select">
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-700">Rol de Sistema</label>
+          <select formControlName="role" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
             <option value="ADMIN">Administrador</option>
             <option value="RECEPCIONISTA">Recepcionista</option>
             <option value="SUPERVISOR">Supervisor</option>
-            <option value="LIMPIEZA">Staff de Limpieza</option>
+            <option value="LIMPIEZA">Personal de Limpieza</option>
           </select>
         </div>
         
-        <div class="col-md-6">
-          <label class="form-label fw-medium">Estado</label>
-          <select formControlName="status" class="form-select">
+        <div>
+          <label class="block text-sm font-medium mb-2 text-gray-700">Estado</label>
+          <select formControlName="status" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
             <option value="ACTIVO">Activo</option>
             <option value="INACTIVO">Inactivo</option>
           </select>
         </div>
         
-        <div class="col-md-12">
-          <label class="form-label fw-medium">{{ isEdit ? 'Nueva Contraseña (opcional)' : 'Contraseña Temporal' }}</label>
-          <input type="password" formControlName="password" class="form-control" placeholder="Mínimo 6 caracteres">
+        <div class="sm:col-span-2">
+          <label class="block text-sm font-medium mb-2 text-gray-700">{{ isEdit ? 'Nueva Contraseña (opcional)' : 'Contraseña Temporal' }}</label>
+          <input type="password" formControlName="password" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900" placeholder="Mínimo 6 caracteres">
         </div>
       </div>
       
-      <div class="mt-4 pt-3 border-top d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-light px-4" routerLink="/users">Cancelar</button>
-        <button type="submit" class="btn btn-primary px-4" [disabled]="userForm.invalid">
+      <div class="mt-8 pt-5 border-t border-gray-100 flex justify-end gap-x-2">
+        <button type="button" routerLink="/users" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+          Cancelar
+        </button>
+        <button type="submit" [disabled]="userForm.invalid" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:pointer-events-none transition-colors shadow-sm">
           {{ isEdit ? 'Guardar Cambios' : 'Crear Cuenta' }}
         </button>
       </div>

@@ -1,80 +1,103 @@
-<div class="row mb-4">
-  <div class="col">
-    <h2 class="fw-bold">Reportes y Estadísticas</h2>
-    <p class="text-muted">Análisis detallado del rendimiento del hotel.</p>
+<!-- Page Header -->
+<div class="flex items-center justify-between mb-8">
+  <div>
+    <h2 class="text-2xl font-bold text-gray-800 font-serif">Reportes y Analíticas</h2>
+    <p class="text-sm text-gray-500 mt-1">Análisis detallado del rendimiento del hotel.</p>
   </div>
-  <div class="col-auto">
-    <button class="btn btn-outline-primary d-flex align-items-center me-2" (click)="exportData()">
-      <i class="bi bi-download me-2"></i>
+  <div>
+    <button (click)="exportData()" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+      <i class="bi bi-download text-lg"></i>
       Exportar PDF
     </button>
   </div>
 </div>
 
-<div class="row g-4 mb-4">
-  <div class="col-md-6 col-lg-3" *ngFor="let item of reportsData">
-    <div class="card border-0 shadow-sm p-3">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <span class="text-muted small fw-bold text-uppercase">{{item.label}}</span>
-        <span class="fw-bold text-dark">{{item.unit}}{{item.value | number}}</span>
-      </div>
-      <div class="progress" style="height: 8px;">
-        <div [class]="'progress-bar ' + item.color" role="progressbar" [style.width]="item.progress + '%'"></div>
-      </div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5" *ngFor="let item of reportsData">
+    <div class="flex justify-between items-center mb-3">
+      <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">{{item.label}}</span>
+      <span class="text-xl font-bold text-slate-900 font-serif">{{item.unit}}{{item.value | number}}</span>
+    </div>
+    <div class="w-full bg-gray-100 rounded-full h-1.5 mb-1 overflow-hidden">
+      <div class="h-1.5 rounded-full" 
+           [ngClass]="{
+             'bg-blue-600': item.color === 'bg-primary',
+             'bg-green-500': item.color === 'bg-success',
+             'bg-amber-500': item.color === 'bg-warning',
+             'bg-purple-500': item.color === 'bg-info',
+             'bg-slate-900': item.color === 'bg-dark' || !item.color
+           }" 
+           [style.width]="item.progress + '%'"></div>
     </div>
   </div>
 </div>
 
-<div class="row g-4">
-  <div class="col-lg-8">
-    <div class="card border-0 shadow-sm h-100">
-      <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
-        <h5 class="mb-0 fw-bold text-primary-custom">Ocupación Mensual (Proyectada)</h5>
-        <select class="form-select form-select-sm w-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <!-- Monthly Occupancy Chart -->
+  <div class="lg:col-span-2">
+    <div class="bg-white border border-gray-200 shadow-sm rounded-xl h-full flex flex-col">
+      <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+        <h5 class="font-bold text-gray-800">Ocupación Mensual (Proyectada)</h5>
+        <select class="py-1.5 px-3 block border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
           <option>2026</option>
           <option>2025</option>
         </select>
       </div>
-      <div class="card-body p-4">
-        <!-- Gráfico Dinámico -->
-        <div class="chart-container d-flex align-items-end justify-content-between pt-4" style="height: 250px;">
+      <div class="p-6 flex-1 flex flex-col justify-end">
+        
+        <div class="flex items-end justify-between h-48 w-full gap-2 relative">
+          <!-- Bars -->
           <div *ngFor="let m of monthlyOccupancy" 
-               class="chart-bar bg-primary-custom" 
-               [style.height]="m.rate + '%'" 
-               [title]="m.month + ': ' + m.rate + '%'">
+               class="w-full bg-slate-900 rounded-t-sm transition-all hover:bg-slate-700 relative group"
+               [style.height]="m.rate + '%'">
+            <!-- Tooltip -->
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 pointer-events-none whitespace-nowrap z-10">
+              {{m.month}}: {{m.rate}}%
+            </div>
           </div>
         </div>
-        <div class="d-flex justify-content-between mt-3 text-muted small px-1">
+        
+        <div class="flex justify-between mt-3 text-xs text-gray-400 uppercase tracking-widest font-semibold border-t border-gray-100 pt-3">
           <span *ngFor="let m of monthlyOccupancy">{{m.month}}</span>
         </div>
-        <div class="text-center py-5" *ngIf="monthlyOccupancy.length === 0">
-          <p class="text-muted">No hay datos de ocupación mensual suficientes.</p>
+        
+        <div class="text-center py-10" *ngIf="monthlyOccupancy.length === 0">
+          <p class="text-sm text-gray-500">Datos de ocupación mensual insuficientes.</p>
         </div>
       </div>
     </div>
   </div>
   
-  <div class="col-lg-4">
-    <div class="card border-0 shadow-sm h-100">
-      <div class="card-header bg-white border-bottom p-3">
-        <h5 class="mb-0 fw-bold text-primary-custom">Top Servicios</h5>
+  <!-- Top Services -->
+  <div class="lg:col-span-1">
+    <div class="bg-white border border-gray-200 shadow-sm rounded-xl h-full flex flex-col">
+      <div class="px-6 py-4 border-b border-gray-100">
+        <h5 class="font-bold text-gray-800">Servicios Destacados</h5>
       </div>
-      <div class="card-body">
-        <div class="mb-4" *ngFor="let s of topServices; let i = index">
-          <div class="d-flex justify-content-between mb-1">
-            <span class="small fw-medium">{{s.name}}</span>
-            <span class="small text-muted">{{s.usageCount}} usos</span>
+      <div class="p-6 flex-1">
+        
+        <div class="mb-5 last:mb-0" *ngFor="let s of topServices; let i = index">
+          <div class="flex justify-between items-center mb-1.5">
+            <span class="text-sm font-semibold text-gray-800">{{s.name}}</span>
+            <span class="text-xs text-gray-500 font-medium">{{s.usageCount}} usos</span>
           </div>
-          <div class="progress" style="height: 6px;">
-            <div [class]="'progress-bar ' + (i === 0 ? 'bg-success' : i === 1 ? 'bg-info' : 'bg-warning')" 
+          <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+            <div class="h-1.5 rounded-full"
+                 [ngClass]="{
+                   'bg-green-500': i === 0,
+                   'bg-blue-500': i === 1,
+                   'bg-amber-500': i >= 2
+                 }"
                  [style.width]="(s.usageCount / (topServices[0]?.usageCount || 1)) * 100 + '%'">
             </div>
           </div>
         </div>
         
-        <div class="text-center py-5" *ngIf="topServices.length === 0">
-          <p class="text-muted">No se han registrado servicios adicionales.</p>
+        <div class="text-center py-10" *ngIf="topServices.length === 0">
+          <p class="text-sm text-gray-500">No hay servicios adicionales registrados.</p>
         </div>
+        
       </div>
     </div>
   </div>

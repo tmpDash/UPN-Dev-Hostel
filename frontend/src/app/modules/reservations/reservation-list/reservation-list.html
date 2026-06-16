@@ -1,78 +1,95 @@
-<div class="row mb-4 align-items-center">
-  <div class="col">
-    <h2 class="luxury-title mb-1">Control de Reservas</h2>
-    <p class="text-muted small mb-0">Gestión de flujo de huéspedes y disponibilidad.</p>
-  </div>
-  <div class="col-auto">
-    <button class="btn btn-primary d-flex align-items-center shadow-sm" routerLink="/reservations/new">
-      <i class="bi bi-plus-lg me-2"></i>
-      Registrar Nueva Reserva
-    </button>
+<div class="mb-8">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-800 font-serif">Control de Reservas</h2>
+      <p class="text-sm text-gray-500 mt-1">Gestione el flujo de huéspedes y la disponibilidad.</p>
+    </div>
+    <div>
+      <a routerLink="/reservations/new" class="py-2.5 px-4 inline-flex justify-center items-center gap-2 rounded-lg font-semibold bg-slate-900 text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 transition-all text-sm shadow-sm">
+        <i class="bi bi-plus-lg"></i>
+        Nueva Reserva
+      </a>
+    </div>
   </div>
 </div>
 
-<div class="card overflow-hidden">
-  <div class="card-body p-0">
-    <div class="table-responsive">
-      <table class="table table-luxury align-middle mb-0">
-        <thead>
-          <tr>
-            <th class="ps-4">Folio</th>
-            <th>Huésped Principal</th>
-            <th>Check-In / Out</th>
-            <th>Tipo de Habitación</th>
-            <th>Estado de Pago</th>
-            <th class="text-end pe-4">Operaciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let res of reservations$ | async" class="transition-all">
-            <td class="ps-4">
-              <span class="fw-bold text-deep-navy">#{{res.id}}</span>
-            </td>
-            <td>
-              <div class="d-flex align-items-center">
-                <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=D4AF37&color=fff" alt="Customer Avatar" class="rounded-circle me-3 shadow-sm" width="36" height="36" aria-hidden="true">
-                <div>
-                  <div class="fw-bold text-dark">{{res.customerName}}</div>
-                  <div class="text-muted extra-small">Cliente Verificado</div>
+<!-- Table Card -->
+<div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50 border-b border-gray-200">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">ID / Huésped</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Habitación</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Check-in</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Check-out</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-left">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Estado</span>
+          </th>
+          <th scope="col" class="px-6 py-3 text-right">
+            <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">Acciones</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let res of reservations$ | async" class="hover:bg-gray-50 transition-colors">
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <div class="flex items-center gap-x-3">
+              <img class="inline-block h-9 w-9 rounded-full shadow-sm" src="https://ui-avatars.com/api/?name={{res.customerName}}&background=0F172A&color=fff" alt="Avatar">
+              <div>
+                <span class="block text-sm font-semibold text-gray-800">{{res.customerName}}</span>
+                <span class="block text-xs text-gray-500">#{{res.id}}</span>
+              </div>
+            </div>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-50 border border-gray-200 text-slate-800">
+              <i class="bi bi-door-closed text-gray-400"></i> {{res.roomType}}
+            </span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="text-sm text-gray-800">{{res.checkInDate | date:'dd MMM, yyyy'}}</span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="text-sm text-gray-800">{{res.checkOutDate | date:'dd MMM, yyyy'}}</span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4">
+            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium uppercase tracking-wide"
+                  [ngClass]="{
+                    'bg-green-50 text-green-700': res.status === 'CONFIRMADA',
+                    'bg-amber-50 text-amber-700': res.status === 'PENDIENTE',
+                    'bg-red-50 text-red-700': res.status === 'CANCELADA'
+                  }">
+              {{res.status}}
+            </span>
+          </td>
+          <td class="h-px w-px whitespace-nowrap px-6 py-4 text-right">
+              <div class="relative group inline-block">
+                <button type="button" class="py-2 px-2 inline-flex justify-center items-center gap-2 rounded-full border border-gray-200 font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-all text-sm">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+                <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[10rem] bg-white shadow-md rounded-lg p-2 mt-2 border border-gray-100 absolute right-0 z-50">
+                  <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" [routerLink]="['/reservations/edit', res.id]">
+                    <i class="bi bi-pencil"></i>
+                    Editar
+                  </a>
+                  <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-red-600 hover:bg-red-50" (click)="onDelete(res.id)" href="javascript:void(0);">
+                    <i class="bi bi-trash"></i>
+                    Eliminar
+                  </a>
                 </div>
               </div>
-            </td>
-            <td>
-              <div class="d-flex flex-column">
-                <span class="small fw-medium"><i class="bi bi-arrow-right-short text-success"></i> {{res.checkInDate | date:'dd MMM, yyyy'}}</span>
-                <span class="small text-muted"><i class="bi bi-arrow-left-short text-danger"></i> {{res.checkOutDate | date:'dd MMM, yyyy'}}</span>
-              </div>
-            </td>
-            <td>
-              <span class="badge rounded-pill px-3 py-2 small" style="background-color: rgba(10, 25, 47, 0.05); color: var(--deep-navy); border: 1px solid rgba(212, 175, 55, 0.3);">
-                <i class="bi bi-door-closed-fill me-1 text-primary-gold"></i> {{res.roomType}}
-              </span>
-            </td>
-            <td>
-              <span [ngClass]="{
-                'badge-luxury': true,
-                'confirmed': res.status === 'CONFIRMADA',
-                'pending': res.status === 'PENDIENTE',
-                'cancelled': res.status === 'CANCELADA'
-              }">
-                {{res.status}}
-              </span>
-            </td>
-            <td class="text-end pe-4">
-              <div class="btn-group">
-                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/reservations/edit', res.id]" title="Gestionar" aria-label="Gestionar">
-                  <i class="bi bi-pencil-square text-primary-gold"></i>
-                </button>
-                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(res.id)" title="Anular" aria-label="Anular">
-                  <i class="bi bi-trash3 text-danger"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

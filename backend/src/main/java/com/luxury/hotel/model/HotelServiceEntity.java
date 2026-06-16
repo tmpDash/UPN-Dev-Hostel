@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "hotel_services")
@@ -27,5 +28,6 @@ public class HotelServiceEntity {
     @Enumerated(EnumType.STRING)
     private ServiceCategory category;
 
+    @JsonProperty("isActive")
     private Boolean isActive;
 }

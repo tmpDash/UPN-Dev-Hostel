@@ -1,55 +1,68 @@
-<div class="row mb-4">
-  <div class="col">
-    <h2 class="fw-bold">Mi Perfil</h2>
-    <p class="text-muted">Gestione su información personal y de contacto.</p>
-  </div>
+<!-- Page Header -->
+<div class="mb-8">
+  <h2 class="text-2xl font-bold text-gray-800 font-serif">Mi Perfil</h2>
+  <p class="text-sm text-gray-500 mt-1">Gestione su información personal y de contacto.</p>
 </div>
 
-<div class="row g-4" *ngIf="currentUser$ | async as user">
-  <div class="col-md-4">
-    <div class="card border-0 shadow-sm text-center p-4">
-      <div class="position-relative d-inline-block mx-auto mb-3">
-        <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0D47A1&color=fff&size=128" 
-             alt="Profile Avatar" class="rounded-circle shadow-sm border border-4 border-white" width="128" height="128" aria-hidden="true">
-        <button class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0 p-2">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8" *ngIf="currentUser$ | async as user">
+  
+  <!-- Left Panel: Avatar & Summary -->
+  <div class="md:col-span-1">
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm text-center p-6 flex flex-col items-center">
+      <div class="relative inline-block mb-4">
+        <img class="inline-block w-32 h-32 rounded-full border-4 border-white shadow-sm" 
+             src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0F172A&color=fff&size=128" 
+             alt="Avatar del Perfil">
+        <button type="button" class="absolute bottom-0 right-0 py-2 px-2 inline-flex justify-center items-center gap-2 rounded-full border border-transparent font-semibold bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm shadow-md">
           <i class="bi bi-camera"></i>
         </button>
       </div>
-      <h4 class="fw-bold mb-1">{{user.fullName}}</h4>
-      <p class="text-muted small mb-3">{{user.role}}</p>
-      <div class="d-grid">
-        <button class="btn btn-outline-primary btn-sm">Cambiar Contraseña</button>
+      <h4 class="text-xl font-bold text-gray-800 mb-1">{{user.fullName}}</h4>
+      <p class="text-sm text-gray-500 font-medium mb-5">{{user.role}}</p>
+      
+      <div class="w-full">
+        <button type="button" class="w-full py-2 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none transition-colors">
+          Cambiar Contraseña
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="col-md-8">
-    <div class="card border-0 shadow-sm p-4">
+  <!-- Right Panel: Profile Form -->
+  <div class="md:col-span-2">
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 lg:p-8">
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <label class="form-label fw-bold small">Nombre Completo</label>
-            <input type="text" formControlName="fullName" class="form-control">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+          
+          <div>
+            <label class="block text-sm font-medium mb-2 text-gray-700">Nombre Completo</label>
+            <input type="text" formControlName="fullName" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
           </div>
-          <div class="col-md-6">
-            <label class="form-label fw-bold small">Correo Electrónico</label>
-            <input type="email" formControlName="email" class="form-control">
+          
+          <div>
+            <label class="block text-sm font-medium mb-2 text-gray-700">Correo Electrónico</label>
+            <input type="email" formControlName="email" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
           </div>
-          <div class="col-md-6">
-            <label class="form-label fw-bold small">Teléfono</label>
-            <input type="text" formControlName="phone" class="form-control">
+          
+          <div>
+            <label class="block text-sm font-medium mb-2 text-gray-700">Teléfono</label>
+            <input type="text" formControlName="phone" class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900">
           </div>
-          <div class="col-md-6">
-            <label class="form-label fw-bold small">Departamento</label>
-            <input type="text" formControlName="department" class="form-control" readonly>
+          
+          <div>
+            <label class="block text-sm font-medium mb-2 text-gray-700">Departamento</label>
+            <input type="text" formControlName="department" readonly class="py-2.5 px-4 block w-full border-gray-200 rounded-lg text-sm bg-gray-50 text-gray-500 focus:border-slate-900 focus:ring-slate-900">
           </div>
-          <div class="col-12">
-            <label class="form-label fw-bold small">Biografía</label>
-            <textarea formControlName="bio" class="form-control" rows="4"></textarea>
+          
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium mb-2 text-gray-700">Biografía</label>
+            <textarea formControlName="bio" rows="4" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-slate-900 focus:ring-slate-900"></textarea>
           </div>
+          
         </div>
-        <div class="mt-4 pt-3 border-top d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary px-4 shadow" [disabled]="profileForm.invalid">
+        
+        <div class="mt-8 pt-5 border-t border-gray-100 flex justify-end">
+          <button type="submit" [disabled]="profileForm.invalid" class="py-2.5 px-5 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:pointer-events-none transition-colors shadow-sm">
             Guardar Cambios
           </button>
         </div>

@@ -1,6 +1,6 @@
 {
   "name": "hotel-reservas-web",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -17,9 +17,8 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "preline": "^4.2.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.26.24",
     "tslib": "^2.3.0"
@@ -28,7 +27,11 @@
     "@angular/build": "^21.2.7",
     "@angular/cli": "^21.2.7",
     "@angular/compiler-cli": "^21.2.0",
+    "@tailwindcss/forms": "^0.5.11",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
     "prettier": "^3.8.1",
+    "tailwindcss": "^3.4.19",
     "typescript": "~5.9.2"
   }
 }

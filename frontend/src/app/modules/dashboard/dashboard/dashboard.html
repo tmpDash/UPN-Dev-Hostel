@@ -1,130 +1,141 @@
-<div class="row g-4 mb-4" *ngIf="stats">
-  <div class="col-md-3">
-    <div class="card border-0 h-100">
-      <div class="card-body p-4">
-        <div class="d-flex justify-content-between align-items-start mb-3">
-          <div class="rounded-circle bg-light p-3">
-            <i class="bi bi-door-open text-primary-gold fs-4"></i>
+<!-- Bento Box Grid Layout -->
+<div class="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-8 lg:py-8 mx-auto" *ngIf="stats">
+  <!-- Top Metrics Bento -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+    
+    <!-- Card 1 -->
+    <div class="flex flex-col bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md transition-shadow">
+      <div class="p-5">
+        <div class="flex justify-between items-center mb-3">
+          <div class="w-10 h-10 flex justify-center items-center rounded-lg bg-gray-50 text-gray-500">
+            <i class="bi bi-door-open text-xl"></i>
           </div>
-          <span class="badge bg-light text-success border-0 small">+2 hoy</span>
+          <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-green-50 text-green-700">
+            <i class="bi bi-graph-up"></i> +2 hoy
+          </span>
         </div>
-        <h6 class="text-uppercase text-muted extra-small fw-bold mb-1" style="letter-spacing: 1px;">Habitaciones</h6>
-        <h2 class="luxury-title mb-0">{{ stats.totalRooms }}</h2>
-        <div class="progress mt-3" style="height: 4px;">
-          <div class="progress-bar bg-primary-gold" role="progressbar" style="width: 85%"></div>
+        <h3 class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">Habitaciones</h3>
+        <h2 class="text-3xl font-bold text-gray-800 font-serif">{{ stats.totalRooms }}</h2>
+        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4">
+          <div class="bg-slate-800 h-1.5 rounded-full" style="width: 85%"></div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <div class="col-md-3">
-    <div class="card border-0 h-100">
-      <div class="card-body p-4">
-        <div class="d-flex justify-content-between align-items-start mb-3">
-          <div class="rounded-circle bg-light p-3">
-            <i class="bi bi-person-check text-primary-gold fs-4"></i>
+
+    <!-- Card 2 -->
+    <div class="flex flex-col bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md transition-shadow">
+      <div class="p-5">
+        <div class="flex justify-between items-center mb-3">
+          <div class="w-10 h-10 flex justify-center items-center rounded-lg bg-gray-50 text-gray-500">
+            <i class="bi bi-person-check text-xl"></i>
           </div>
-          <span class="badge bg-light text-primary-gold border-0 small">Óptimo</span>
+          <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-50 text-blue-700">
+            Óptimo
+          </span>
         </div>
-        <h6 class="text-uppercase text-muted extra-small fw-bold mb-1" style="letter-spacing: 1px;">Ocupación</h6>
-        <h2 class="luxury-title mb-0">{{ stats.occupancyRate }}%</h2>
-        <p class="mt-2 mb-0 extra-small text-muted">Tasa de rendimiento actual</p>
+        <h3 class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">Ocupación</h3>
+        <h2 class="text-3xl font-bold text-gray-800 font-serif">{{ stats.occupancyRate }}%</h2>
+        <p class="text-xs text-gray-500 mt-2">Tasa de rendimiento actual</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="flex flex-col bg-white border border-gray-100 shadow-sm rounded-xl hover:shadow-md transition-shadow">
+      <div class="p-5">
+        <div class="flex justify-between items-center mb-3">
+          <div class="w-10 h-10 flex justify-center items-center rounded-lg bg-gray-50 text-gray-500">
+            <i class="bi bi-calendar-heart text-xl"></i>
+          </div>
+        </div>
+        <h3 class="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-1">Reservas Activas</h3>
+        <h2 class="text-3xl font-bold text-gray-800 font-serif">{{ stats.totalReservations }}</h2>
+        <p class="text-xs text-gray-500 mt-2">Flujo de huéspedes entrantes</p>
+      </div>
+    </div>
+
+    <!-- Card 4 (Dark Accent) -->
+    <div class="flex flex-col bg-slate-900 shadow-sm rounded-xl hover:shadow-md transition-shadow relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-32 h-32 bg-slate-800 rounded-bl-full -mr-8 -mt-8 z-0"></div>
+      <div class="p-5 relative z-10">
+        <div class="flex justify-between items-center mb-3">
+          <div class="w-10 h-10 flex justify-center items-center rounded-lg bg-slate-800 text-gray-300">
+            <i class="bi bi-cash-stack text-xl"></i>
+          </div>
+        </div>
+        <h3 class="text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1">Ingresos Est.</h3>
+        <h2 class="text-3xl font-bold text-white font-serif">S/ {{ stats.monthlyRevenue | number:'1.2-2' }}</h2>
+        <p class="text-xs text-slate-400 mt-2">Cierre del ciclo actual</p>
       </div>
     </div>
   </div>
 
-  <div class="col-md-3">
-    <div class="card border-0 h-100">
-      <div class="card-body p-4">
-        <div class="d-flex justify-content-between align-items-start mb-3">
-          <div class="rounded-circle bg-light p-3">
-            <i class="bi bi-calendar-heart text-primary-gold fs-4"></i>
-          </div>
-        </div>
-        <h6 class="text-uppercase text-muted extra-small fw-bold mb-1" style="letter-spacing: 1px;">Reservas Activas</h6>
-        <h2 class="luxury-title mb-0">{{ stats.totalReservations }}</h2>
-        <p class="mt-2 mb-0 extra-small text-muted">Flujo de huéspedes entrantes</p>
+  <!-- Bottom Bento -->
+  <div class="grid lg:grid-cols-3 gap-4 sm:gap-6" *ngIf="!loading">
+    
+    <!-- Activity Log (Spans 2 columns) -->
+    <div class="lg:col-span-2 flex flex-col bg-white border border-gray-100 shadow-sm rounded-xl">
+      <div class="p-5 md:p-6 flex justify-between items-center border-b border-gray-100">
+        <h2 class="text-lg font-bold text-gray-800 font-serif">Registro de Actividad</h2>
+        <a routerLink="/reservations" class="text-sm font-semibold text-blue-600 hover:text-blue-800">Ver Todas</a>
       </div>
-    </div>
-  </div>
+      
+      <div class="p-5 md:p-6">
+        <div class="flex flex-col gap-y-4">
+          <div *ngFor="let res of recentReservations" class="flex items-center gap-x-4 pb-4 border-b border-gray-50 last:border-0 last:pb-0">
+            <div class="relative">
+              <img class="inline-block h-[2.875rem] w-[2.875rem] rounded-full" src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" alt="Avatar">
+              <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white"
+                    [class.bg-green-500]="res.status === 'CONFIRMADA'" 
+                    [class.bg-amber-400]="res.status === 'PENDIENTE'"></span>
+            </div>
+            <div class="grow">
+              <p class="text-sm font-semibold text-gray-800">{{ res.customerName }}</p>
+              <p class="text-xs text-gray-500">Res #{{ res.id }} - {{ res.roomType }}</p>
+            </div>
+            <div>
+              <span *ngIf="res.status === 'CONFIRMADA'" class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-green-50 text-green-700">Confirmada</span>
+              <span *ngIf="res.status === 'PENDIENTE'" class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-amber-50 text-amber-700">Pendiente</span>
+            </div>
+          </div>
 
-  <div class="col-md-3">
-    <div class="card border-0 h-100 bg-deep-navy">
-      <div class="card-body p-4">
-        <div class="d-flex justify-content-between align-items-start mb-3">
-          <div class="rounded-circle bg-white-10 p-3">
-            <i class="bi bi-cash-stack text-primary-gold fs-4"></i>
+          <div *ngIf="recentReservations.length === 0" class="text-center py-10">
+            <i class="bi bi-inbox text-4xl text-gray-300"></i>
+            <p class="text-sm text-gray-500 mt-2">No se encontró actividad reciente.</p>
           </div>
         </div>
-        <h6 class="text-uppercase text-white-50 extra-small fw-bold mb-1" style="letter-spacing: 1px;">Ingresos Estimados</h6>
-        <h2 class="luxury-title text-white mb-0">S/ {{ stats.monthlyRevenue | number:'1.2-2' }}</h2>
-        <p class="mt-2 mb-0 extra-small text-white-50">Cierre de ciclo actual</p>
       </div>
     </div>
+
+    <!-- Operational Status (Spans 1 column) -->
+    <div class="flex flex-col bg-white border border-gray-100 shadow-sm rounded-xl">
+      <div class="p-5 md:p-6 border-b border-gray-100">
+        <h2 class="text-lg font-bold text-gray-800 font-serif">Estado Operativo</h2>
+      </div>
+      <div class="p-5 md:p-6">
+        <div class="text-center mb-8">
+          <span class="block text-5xl font-bold text-slate-900 font-serif">{{ stats.totalRooms }}</span>
+          <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest mt-2">Capacidad Total</span>
+        </div>
+        
+        <div class="flex flex-col gap-3">
+          <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+            <span class="text-sm font-semibold text-gray-600">Reservas</span>
+            <span class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-medium bg-white border border-gray-200 text-gray-800 rounded-full shadow-sm">{{ stats.totalReservations }}</span>
+          </div>
+          <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+            <span class="text-sm font-semibold text-gray-600">Cancelaciones</span>
+            <span class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-medium bg-white border border-gray-200 text-red-600 rounded-full shadow-sm">{{ stats.cancellations }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 
-<div class="row g-4" *ngIf="!loading">
-  <div class="col-md-8">
-    <div class="card border-0 h-100">
-      <div class="card-header bg-white border-0 p-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <h5 class="luxury-title mb-0">Bitácora de Actividad</h5>
-          <button class="btn btn-link text-primary-gold text-decoration-none small fw-bold">Ver Todo</button>
-        </div>
-      </div>
-      <div class="card-body px-4 pb-4 pt-0">
-        <div class="d-flex align-items-center py-3 border-bottom-light" *ngFor="let res of recentReservations">
-          <div class="avatar-indicator me-3">
-             <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" alt="Customer Avatar" class="rounded-circle" width="42" height="42" aria-hidden="true">
-             <span class="status-dot" [class.bg-success]="res.status === 'CONFIRMADA'" [class.bg-warning]="res.status === 'PENDIENTE'"></span>
-          </div>
-          <div class="flex-grow-1">
-            <p class="mb-0 fw-bold small text-dark">{{ res.customerName }}</p>
-            <small class="text-muted extra-small">Reserva #{{ res.id }} - {{ res.roomType }}</small>
-          </div>
-          <div class="text-end">
-             <span class="badge-luxury confirmed extra-small" *ngIf="res.status === 'CONFIRMADA'">Ingreso</span>
-             <span class="badge-luxury pending extra-small" *ngIf="res.status === 'PENDIENTE'">Pendiente</span>
-          </div>
-        </div>
-        
-        <div class="text-center py-5" *ngIf="recentReservations.length === 0">
-           <i class="bi bi-inbox fs-2 text-muted opacity-25"></i>
-           <p class="text-muted small mt-2">Sin actividad reciente registrada.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-md-4">
-    <div class="card border-0 h-100">
-      <div class="card-header bg-white border-0 p-4">
-        <h5 class="luxury-title mb-0">Estatus Operativo</h5>
-      </div>
-      <div class="card-body p-4">
-        <div class="text-center mb-5">
-           <div class="display-4 fw-bold text-deep-navy">{{ stats?.totalRooms }}</div>
-           <p class="text-muted small text-uppercase fw-bold" style="letter-spacing: 2px;">Capacidad de Planta</p>
-        </div>
-        
-        <div class="d-grid gap-3">
-          <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
-            <span class="small fw-bold text-muted">Reservas</span>
-            <span class="badge bg-white text-dark shadow-sm">{{ stats?.totalReservations }}</span>
-          </div>
-          <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
-            <span class="small fw-bold text-muted">Anulaciones</span>
-            <span class="badge bg-white text-danger shadow-sm">{{ stats?.cancellations }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="text-center p-5" *ngIf="loading">
-  <div class="spinner-border text-primary-gold" role="status">
-    <span class="visually-hidden">Cargando...</span>
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="flex justify-center items-center min-h-[400px]">
+  <div class="animate-spin inline-block w-8 h-8 border-[3px] border-current border-t-transparent text-slate-900 rounded-full" role="status" aria-label="loading">
+    <span class="sr-only">Cargando...</span>
   </div>
 </div>

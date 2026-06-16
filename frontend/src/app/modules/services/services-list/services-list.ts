@@ -10,20 +10,51 @@ import { HotelServiceCatalogService } from '../services/hotel-service';
   styleUrls: ['./services-list.css']
 })
 export class ServicesList implements OnInit {
-  services$: Observable<HotelService[]>;
+  services$!: Observable<HotelService[]>;
 
-  constructor(private hotelService: HotelServiceCatalogService) {
+  constructor(private hotelService: HotelServiceCatalogService) {}
+
+  ngOnInit(): void {
+    this.loadServices();
+  }
+
+  loadServices() {
     this.services$ = this.hotelService.getServices();
   }
 
-  ngOnInit(): void {}
-
-  onToggleStatus(id: number) {
-    this.hotelService.getServiceById(id).subscribe(service => {
-      service.isActive = !service.isActive;
-      this.hotelService.updateService(id, service).subscribe(() => {
-        this.services$ = this.hotelService.getServices(); // Refresh
+  onToggleStatus(service: HotelService) {
+    const isCurrentlyActive = service.isActive === true || service.active === true;
+    const newStatus = !isCurrentlyActive;
+    
+    // Optimistic update
+    service.isActive = newStatus;
+    service.active = newStatus;
+    
+    this.hotelService.getServiceById(service.id).subscribe(s => {
+      s.isActive = newStatus;
+      s.active = newStatus;
+      this.hotelService.updateService(service.id, s).subscribe({
+        next: () => {
+          // Success, do nothing as optimistic update already applied
+        },
+        error: () => {
+          // Revert on error
+          service.isActive = isCurrentlyActive;
+          service.active = isCurrentlyActive;
+        }
       });
     });
+  }
+
+  onDelete(id: number) {
+    if(confirm('¿Está seguro de eliminar este servicio?')) {
+      this.hotelService.deleteService(id).subscribe(() => {
+        this.loadServices();
+      });
+    }
+  }
+
+  trackByService(index: number, service: HotelService): number {
+    return service.id;
   }
 }

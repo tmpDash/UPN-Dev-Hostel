@@ -1,8 +1,9 @@
 # Evidencia de Práctica de Campo: Calidad y Pruebas de Desarrollo de Software
 
 **Fecha de Inicio:** 13 de Junio de 2026
-**Fecha de Actualización:** 14 de Junio de 2026
-**Proyecto:** Hotel-Reservas-UPN-2
+**Fecha de Actualización:** 15 de Junio de 2026
+**Proyecto:** Hotel-Luxury (White-label)
+**Conversation ID (Antigravity):** dc686ec4-3b05-4b43-997b-f08120958542
 **Fase Actual:** Auditoría Integral QA Completada (v1.1.0)
 
 ---
@@ -59,4 +60,20 @@ Se realizaron pruebas exhaustivas de la aplicación cliente (Angular) y de la in
 * [x] **Análisis con Google Lighthouse**: Rendimiento, Accesibilidad, Mejores Prácticas y SEO auditados.
 * [x] **Escaneo de Vulnerabilidades con OWASP ZAP**: Escaneo activo (Active Scan) finalizado.
 * [x] **Documentación**: README.md e informes de evidencias actualizados.
-* [ ] **Fase 3 (Siguiente paso):** Resolver vulnerabilidades detectadas y optimizar frontend (v1.2.0).
+* [x] **Fase 3 (v1.2.0):** Resolver vulnerabilidades detectadas y optimizar frontend (Seguridad ZAP y Lighthouse resueltos con éxito).
+* [x] **Fase 4 (v1.3.0):** Refactorización comercial (White-label). Eliminación de dependencias académicas, reestructuración profunda de paquetes Java y actualización de branding.
+
+---
+
+## 5. Implementación de Optimizaciones (v1.2.0 y v1.3.0)
+
+1. **Resolución de Riesgos ZAP (v1.2.0)**:
+   - Se erradicó la fuga de hashes BCrypt (Riesgo Alto) inyectando @JsonIgnore en las entidades correspondientes.
+   - Se fortificó Spring Security con X-Frame-Options: DENY y Content Security Policy (CSP).
+2. **Mejoras de Lighthouse (v1.2.0)**:
+   - Se implementaron métricas de SEO y Accesibilidad (Atributos ARIA, meta descripciones, tamaños explícitos). El SEO del login alcanzó el 100%.
+3. **Refactorización White-label (v1.3.0)**:
+   - Migración masiva de la estructura de paquetes Java (com.upn.hotelreservas a com.luxury.hotel).
+   - Saneamiento de base de datos y scripts (import.sql) para reflejar correos corporativos @luxuryhotel.com.
+   - Limpieza de vistas HTML en Angular para remover el contexto universitario.
+   - Todas las 69 pruebas unitarias se verificaron exitosamente bajo la nueva estructura.

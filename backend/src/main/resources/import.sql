@@ -18,15 +18,15 @@ INSERT INTO hotel_services (name, description, price, icon, category, is_active)
 INSERT INTO hotel_services (name, description, price, icon, category, is_active) VALUES ('Alquiler de Bicicletas', 'Bicicletas de montaña para paseo.', 12.00, 'bi-bicycle', 'TRANSPORT', true);
 
 -- 3. Staff (9 registros con contraseñas cifradas con BCrypt: '123456')
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Administrador General', 'admin@hotelupn.com', 'ADMIN', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Juan Perez', 'juan.perez@hotelupn.com', 'RECEPCIONISTA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Maria Garcia', 'maria.garcia@hotelupn.com', 'SUPERVISOR', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Carlos Ruiz', 'carlos.ruiz@hotelupn.com', 'RECEPCIONISTA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Lucia Mendoza', 'lucia.mendo@hotelupn.com', 'RECEPCIONISTA', 'INACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Roberto Diaz', 'roberto.diaz@hotelupn.com', 'ADMIN', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Elena Torres', 'elena.torres@hotelupn.com', 'SUPERVISOR', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Pedro Gomez', 'pedro.gomez@hotelupn.com', 'RECEPCIONISTA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
-INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Ana Martinez', 'ana.limpieza@hotelupn.com', 'LIMPIEZA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Administrador General', 'admin@luxuryhotel.com', 'ADMIN', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Juan Perez', 'juan.perez@luxuryhotel.com', 'RECEPCIONISTA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Maria Garcia', 'maria.garcia@luxuryhotel.com', 'SUPERVISOR', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Carlos Ruiz', 'carlos.ruiz@luxuryhotel.com', 'RECEPCIONISTA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Lucia Mendoza', 'lucia.mendo@luxuryhotel.com', 'RECEPCIONISTA', 'INACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Roberto Diaz', 'roberto.diaz@luxuryhotel.com', 'ADMIN', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Elena Torres', 'elena.torres@luxuryhotel.com', 'SUPERVISOR', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Pedro Gomez', 'pedro.gomez@luxuryhotel.com', 'RECEPCIONISTA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
+INSERT INTO staff_users (full_name, email, role, status, password, last_access) VALUES ('Ana Martinez', 'ana.limpieza@luxuryhotel.com', 'LIMPIEZA', 'ACTIVO', '$2a$10$sbJ9QavygOXEc5oqbn9Pd.adJIYNTfwqhrO/QXHeVAkrcMvXk9YpG', NOW());
 
 -- 4. Reservas (15 registros)
 INSERT INTO reservations (customer_name, check_in_date, check_out_date, room_type, status, total_price) VALUES ('Carlos Sanchez', '2026-06-01', '2026-06-05', 'SUITE', 'CONFIRMADA', 500.00);

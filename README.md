@@ -1,4 +1,4 @@
-# 🏨 Sistema de Gestión Hotelera - Hotel Reservas UPN
+# 🏨 Sistema de Gestión Hotelera - Hotel Luxury
 
 Este proyecto es una aplicación Full-Stack profesional diseñada para la gestión de reservas, huéspedes y servicios de una cadena hotelera. Implementa una arquitectura moderna, segura y escalable.
 
@@ -82,6 +82,11 @@ Se realizó un *Escaneo Activo* automatizado, estableciendo la línea base de se
   - Se implementó `aria-hidden="true"` en avatares generados y etiquetas `aria-label` en botones de acción sin texto.
   - Las nuevas pruebas confirmaron que no hubo impacto en las funciones base (69/69 Unit Tests passed).
 
+### Refactorización Comercial / White-label (v1.3.0)
+- **Migración de Marca:** Se renombraron los paquetes Java (com.luxury.hotel) eliminando dependencias universitarias.
+- **Identidad Frontend:** Se actualizó el título y metadatos de Angular a Hotel Luxury.
+- **Datos Saneados:** El archivo de inicialización de la BD ahora utiliza cuentas corporativas (@luxuryhotel.com). Todo testeado en verde (69/69 Unit Tests).
+
 **Ejecutar pruebas y generar reporte de cobertura:**
 ```bash
 cd backend
@@ -94,10 +99,10 @@ mvn clean test jacoco:report
 ## 🔑 Credenciales de Prueba (Password: 123456)
 | Rol | Usuario |
 | :--- | :--- |
-| **Administrador** | `admin@hotelupn.com` |
-| **Recepcionista** | `juan.perez@hotelupn.com` |
-| **Supervisor** | `maria.garcia@hotelupn.com` |
-| **Limpieza** | `ana.limpieza@hotelupn.com` |
+| **Administrador** | `admin@luxuryhotel.com` |
+| **Recepcionista** | `juan.perez@luxuryhotel.com` |
+| **Supervisor** | `maria.garcia@luxuryhotel.com` |
+| **Limpieza** | `ana.limpieza@luxuryhotel.com` |
 
 ---
 
@@ -106,4 +111,4 @@ mvn clean test jacoco:report
 - **Frontend**: Angular, TypeScript, Bootstrap 5, SweetAlert2, RxJS.
 
 ---
-*Desarrollado como parte del curso de Ingeniería de Sistemas - UPN.*
+

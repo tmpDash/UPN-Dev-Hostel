@@ -40,7 +40,7 @@
       </div>
       <div class="dropdown" *ngIf="currentUser$ | async as user">
         <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown">
-          <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0D47A1&color=fff" class="rounded-circle me-2" width="28">
+          <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0D47A1&color=fff" alt="User Avatar" class="rounded-circle me-2" width="28" height="28" aria-hidden="true">
           <span class="fw-medium text-dark d-none d-md-inline">{{user.fullName}}</span>
         </button>
         <ul class="dropdown-menu dropdown-menu-end shadow border-0">

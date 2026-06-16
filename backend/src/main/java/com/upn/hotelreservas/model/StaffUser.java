@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -35,6 +36,7 @@ public class StaffUser implements UserDetails {
 
     private String status; 
 
+    @JsonIgnore
     @NotBlank(message = "La contraseña es obligatoria")
     @Column(nullable = false, length = 255)
     private String password;
@@ -56,6 +58,7 @@ public class StaffUser implements UserDetails {
     public void setRole(UserRole role) { this.role = role; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+    @JsonProperty
     public void setPassword(String password) { this.password = password; }
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
@@ -73,6 +76,7 @@ public class StaffUser implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
+    @JsonIgnore
     @Override
     public String getPassword() {
         return this.password; // Aseguramos que retorne el campo password

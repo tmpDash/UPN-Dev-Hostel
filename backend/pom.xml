@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.upn</groupId>
 	<artifactId>hotel-reservas-backend</artifactId>
-	<version>1.0.0</version>
+	<version>1.2.0</version>
 	<name>hotel-reservas-backend</name>
 	<description>Backend para el sistema de reservas de hotel</description>
 	<properties>

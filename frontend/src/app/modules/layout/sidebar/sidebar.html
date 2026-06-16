@@ -1,6 +1,6 @@
 <div class="sidebar d-flex flex-column p-4">
   <div class="d-flex align-items-center mb-4 text-decoration-none">
-    <img src="/assets/img/logo.png" alt="Logo" width="45" class="me-3 rounded shadow-sm">
+    <img src="/assets/img/logo.png" alt="Hotel Luxury UPN Logo" width="45" height="45" class="me-3 rounded shadow-sm">
     <div class="d-flex flex-column">
       <span class="fs-5 fw-bold text-white mb-0" style="font-family: 'Playfair Display', serif;">LUXURY</span>
       <span class="text-primary-gold small" style="letter-spacing: 2px;">CONCIERGE</span>
@@ -43,7 +43,7 @@
   <hr>
   <div class="dropdown" *ngIf="currentUser$ | async as user">
     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0D47A1&color=fff" alt="" width="32" height="32" class="rounded-circle me-2">
+      <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0D47A1&color=fff" alt="" width="32" height="32" class="rounded-circle me-2" aria-hidden="true">
       <div class="d-flex flex-column">
         <strong class="small">{{user.fullName}}</strong>
         <span class="text-white-50" style="font-size: 0.7rem;">{{user.role}}</span>

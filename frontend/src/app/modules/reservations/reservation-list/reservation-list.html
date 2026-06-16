@@ -32,7 +32,7 @@
             </td>
             <td>
               <div class="d-flex align-items-center">
-                <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=D4AF37&color=fff" class="rounded-circle me-3 shadow-sm" width="36">
+                <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=D4AF37&color=fff" alt="Customer Avatar" class="rounded-circle me-3 shadow-sm" width="36" height="36" aria-hidden="true">
                 <div>
                   <div class="fw-bold text-dark">{{res.customerName}}</div>
                   <div class="text-muted extra-small">Cliente Verificado</div>
@@ -62,10 +62,10 @@
             </td>
             <td class="text-end pe-4">
               <div class="btn-group">
-                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/reservations/edit', res.id]" title="Gestionar">
+                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/reservations/edit', res.id]" title="Gestionar" aria-label="Gestionar">
                   <i class="bi bi-pencil-square text-primary-gold"></i>
                 </button>
-                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(res.id)" title="Anular">
+                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(res.id)" title="Anular" aria-label="Anular">
                   <i class="bi bi-trash3 text-danger"></i>
                 </button>
               </div>

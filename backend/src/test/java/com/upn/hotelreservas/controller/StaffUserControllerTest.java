@@ -85,10 +85,11 @@ public class StaffUserControllerTest {
     @Test
     void crear_ShouldReturnSavedUser() throws Exception {
         when(service.guardar(any(StaffUser.class))).thenReturn(sampleUser);
+        String jsonRequest = "{\"fullName\":\"Admin Test\",\"email\":\"admin@test.com\",\"password\":\"password123\",\"role\":\"ADMIN\",\"status\":\"ACTIVO\"}";
 
         mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(sampleUser)))
+                .content(jsonRequest))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value("admin@test.com"));
     }
@@ -107,10 +108,11 @@ public class StaffUserControllerTest {
     void actualizar_ShouldReturnUpdatedUser() throws Exception {
         when(service.buscarPorId(1L)).thenReturn(Optional.of(sampleUser));
         when(service.guardar(any(StaffUser.class))).thenReturn(sampleUser);
+        String jsonRequest = "{\"fullName\":\"Admin Test\",\"email\":\"admin@test.com\",\"password\":\"password123\",\"role\":\"ADMIN\",\"status\":\"ACTIVO\"}";
 
         mockMvc.perform(put("/users/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(sampleUser)))
+                .content(jsonRequest))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.email").value("admin@test.com"));
     }
@@ -128,10 +130,11 @@ public class StaffUserControllerTest {
     @Test
     void actualizar_WhenNotExists_ShouldReturnNotFound() throws Exception {
         when(service.buscarPorId(2L)).thenReturn(Optional.empty());
+        String jsonRequest = "{\"fullName\":\"Admin Test\",\"email\":\"admin@test.com\",\"password\":\"password123\",\"role\":\"ADMIN\",\"status\":\"ACTIVO\"}";
 
         mockMvc.perform(put("/users/{id}", 2L)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(sampleUser)))
+                .content(jsonRequest))
                 .andExpect(status().isNotFound());
     }
 

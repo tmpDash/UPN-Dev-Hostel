@@ -30,7 +30,7 @@
             <td class="ps-4">
               <div class="d-flex align-items-center">
                 <div class="avatar-indicator me-3">
-                  <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0A192F&color=D4AF37" class="rounded-circle shadow-sm" width="38">
+                  <img src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0A192F&color=D4AF37" alt="User Avatar" class="rounded-circle shadow-sm" width="38" height="38" aria-hidden="true">
                   <span class="status-dot" [class.bg-success]="user.status === 'ACTIVO'" [class.bg-danger]="user.status === 'INACTIVO'"></span>
                 </div>
                 <div>
@@ -65,10 +65,10 @@
             </td>
             <td class="text-end pe-4">
               <div class="btn-group">
-                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/users/edit', user.id]" title="Editar Perfil">
+                <button class="btn btn-light btn-sm border me-1 rounded" [routerLink]="['/users/edit', user.id]" title="Editar Perfil" aria-label="Editar Perfil">
                   <i class="bi bi-pencil-square text-primary-gold"></i>
                 </button>
-                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(user.id)" title="Dar de Baja">
+                <button class="btn btn-light btn-sm border rounded" (click)="onDelete(user.id)" title="Dar de Baja" aria-label="Dar de Baja">
                   <i class="bi bi-shield-x text-danger"></i>
                 </button>
               </div>

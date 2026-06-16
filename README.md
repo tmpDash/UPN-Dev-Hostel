@@ -74,6 +74,14 @@ Se realizó un *Escaneo Activo* automatizado, estableciendo la línea base de se
 - **Riesgo Medio:** 4 hallazgos (Cabeceras de seguridad ausentes como CSP, protección Anti-Clickjacking y CORS permisivo).
 - *Conclusión:* Las vulnerabilidades detectadas son propias de una fase temprana de desarrollo. Quedan documentadas para ser fortificadas y resueltas integralmente en la próxima iteración (v1.2.0) a través de Spring Security.
 
+### Correcciones de Seguridad y Optimización (v1.2.0)
+- **Seguridad ZAP Resoluciones:**
+  - Se implementó `@JsonIgnore` y `@JsonProperty` en la entidad `StaffUser` para ocultar la fuga de hashes BCrypt detectada como Riesgo Alto.
+  - Se configuró estrictamente el encabezado `X-Frame-Options: DENY` y una sólida directiva de `Content-Security-Policy (CSP)` en `SecurityConfig.java`.
+- **Rendimiento y Accesibilidad Lighthouse Resoluciones:**
+  - Se implementó `aria-hidden="true"` en avatares generados y etiquetas `aria-label` en botones de acción sin texto.
+  - Las nuevas pruebas confirmaron que no hubo impacto en las funciones base (69/69 Unit Tests passed).
+
 **Ejecutar pruebas y generar reporte de cobertura:**
 ```bash
 cd backend

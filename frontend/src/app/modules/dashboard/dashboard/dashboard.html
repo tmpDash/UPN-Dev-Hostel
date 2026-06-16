@@ -76,7 +76,7 @@
       <div class="card-body px-4 pb-4 pt-0">
         <div class="d-flex align-items-center py-3 border-bottom-light" *ngFor="let res of recentReservations">
           <div class="avatar-indicator me-3">
-             <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" class="rounded-circle" width="42">
+             <img src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" alt="Customer Avatar" class="rounded-circle" width="42" height="42" aria-hidden="true">
              <span class="status-dot" [class.bg-success]="res.status === 'CONFIRMADA'" [class.bg-warning]="res.status === 'PENDIENTE'"></span>
           </div>
           <div class="flex-grow-1">

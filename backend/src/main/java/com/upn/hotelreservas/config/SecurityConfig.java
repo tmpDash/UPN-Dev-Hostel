@@ -27,6 +27,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .headers(headers -> headers
+                        .frameOptions(frameOptions -> frameOptions.deny())
+                        .contentSecurityPolicy(csp -> csp.policyDirectives("default-src 'self' http://localhost:4200 https://ui-avatars.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ui-avatars.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'"))
+                )
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth

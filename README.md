@@ -87,6 +87,15 @@ Se realizó un *Escaneo Activo* automatizado, estableciendo la línea base de se
 - **Identidad Frontend:** Se actualizó el título y metadatos de Angular a Hotel Luxury.
 - **Datos Saneados:** El archivo de inicialización de la BD ahora utiliza cuentas corporativas (@luxuryhotel.com). Todo testeado en verde (69/69 Unit Tests).
 
+### Rediseño Visual, Traducciones y Auditoría Final (v1.4.0)
+- **UI/UX Moderno:** Se migró a un diseño web basado en utilidades modernas (TailwindCSS / Preline), colores corporativos elegantes, y componentes responsivos en todos los módulos (Login, Dashboard, Reservas, Servicios).
+- **Internacionalización:** Traducción completa del frontend de inglés a español, abarcando menús, formularios y la página de "Mi Perfil".
+- **Correcciones Estables:** Se solucionó un problema de enlace asíncrono y Change Detection en Angular que prevenía la renderización del Catálogo de Servicios al crear nuevas reservas.
+- **Auditoría Técnica:**
+  - **Lighthouse:** Se validaron los rediseños con puntajes sobresalientes (Accesibilidad 92/100, SEO 100/100, Mejores Prácticas 96/100).
+  - **OWASP:** Revisión de código en Spring Security (`SecurityConfig.java`) confirmó correcta mitigación contra CORS, CSRF (JWT Stateless) y XFO/Clickjacking.
+  - **Unit Tests:** Validado nuevamente (69/69 Unit Tests passed), con 98% de cobertura en controladores y 92% en servicios.
+
 **Ejecutar pruebas y generar reporte de cobertura:**
 ```bash
 cd backend
@@ -108,7 +117,7 @@ mvn clean test jacoco:report
 
 ## 🏗️ Estructura del Proyecto
 - **Backend**: Java 17, Spring Boot 3, Spring Data JPA, Hibernate, Spring Security, JWT, Lombok, MySQL.
-- **Frontend**: Angular, TypeScript, Bootstrap 5, SweetAlert2, RxJS.
+- **Frontend**: Angular, TypeScript, TailwindCSS, Preline UI, SweetAlert2, RxJS.
 
 ---
 

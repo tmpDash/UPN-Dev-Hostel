@@ -62,6 +62,7 @@ Se realizaron pruebas exhaustivas de la aplicación cliente (Angular) y de la in
 * [x] **Documentación**: README.md e informes de evidencias actualizados.
 * [x] **Fase 3 (v1.2.0):** Resolver vulnerabilidades detectadas y optimizar frontend (Seguridad ZAP y Lighthouse resueltos con éxito).
 * [x] **Fase 4 (v1.3.0):** Refactorización comercial (White-label). Eliminación de dependencias académicas, reestructuración profunda de paquetes Java y actualización de branding.
+* [x] **Fase 5 (v1.4.0):** Rediseño UI/UX (TailwindCSS), Internacionalización (I18n), y Auditoría Final (OWASP/Lighthouse/JUnit).
 
 ---
 
@@ -77,3 +78,8 @@ Se realizaron pruebas exhaustivas de la aplicación cliente (Angular) y de la in
    - Saneamiento de base de datos y scripts (import.sql) para reflejar correos corporativos @luxuryhotel.com.
    - Limpieza de vistas HTML en Angular para remover el contexto universitario.
    - Todas las 69 pruebas unitarias se verificaron exitosamente bajo la nueva estructura.
+4. **Rediseño UI/UX y Auditoría Final (v1.4.0)**:
+   - **Frontend UI/UX:** Migración de estilos a TailwindCSS y preline. Traducción integral del sistema al español.
+   - **Performance y Accesibilidad:** Lighthouse reportó 92% Accesibilidad, 100% SEO, 96% Mejores Prácticas (Mejora significativa frente a v1.2.0).
+   - **Seguridad Backend (OWASP):** Implementación sólida validada de JWT Stateless, CORS restringido a frontend, y desactivación de CSRF por diseño API.
+   - **Cobertura de Pruebas (JUnit/JaCoCo):** Las 69 pruebas unitarias se mantuvieron estables (100% PASS), alcanzando **98% de cobertura en Controllers** y **92% en Services**.

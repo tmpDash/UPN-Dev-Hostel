@@ -116,7 +116,7 @@ mvn clean test jacoco:report
 ---
 
 ## 🏗️ Estructura del Proyecto
-- **Backend**: Java 17, Spring Boot 3, Spring Data JPA, Hibernate, Spring Security, JWT, Lombok, MySQL.
+- **Backend**: Java 21, Spring Boot 3, Spring Data JPA, Hibernate, Spring Security, JWT, Lombok, MySQL.
 - **Frontend**: Angular, TypeScript, TailwindCSS, Preline UI, SweetAlert2, RxJS.
 
 ---

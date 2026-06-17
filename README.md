@@ -13,7 +13,7 @@ Este proyecto es una aplicación Full-Stack profesional diseñada para la gesti�
 
 ## 🛠️ Requerimientos del Sistema
 Para ejecutar este proyecto localmente, asegúrese de tener instalado:
-- **Java JDK 17** o superior.
+- **Java JDK 21** o superior.
 - **Node.js 20.x** (LTS) y **npm**.
 - **Angular CLI** (`npm install -g @angular/cli`).
 - **MySQL Server 8.0** o superior.

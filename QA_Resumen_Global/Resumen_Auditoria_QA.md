@@ -1,10 +1,10 @@
 # Evidencia de Práctica de Campo: Calidad y Pruebas de Desarrollo de Software
 
 **Fecha de Inicio:** 13 de Junio de 2026
-**Fecha de Actualización:** 15 de Junio de 2026
+**Fecha de Actualización:** 18 de Junio de 2026
 **Proyecto:** Hotel-Luxury (White-label)
 **Conversation ID (Antigravity):** dc686ec4-3b05-4b43-997b-f08120958542
-**Fase Actual:** Auditoría Integral QA Completada (v1.1.0)
+**Fase Actual:** Preparación de parches y correcciones menores (v1.5.0)
 
 ---
 
@@ -63,6 +63,7 @@ Se realizaron pruebas exhaustivas de la aplicación cliente (Angular) y de la in
 * [x] **Fase 3 (v1.2.0):** Resolver vulnerabilidades detectadas y optimizar frontend (Seguridad ZAP y Lighthouse resueltos con éxito).
 * [x] **Fase 4 (v1.3.0):** Refactorización comercial (White-label). Eliminación de dependencias académicas, reestructuración profunda de paquetes Java y actualización de branding.
 * [x] **Fase 5 (v1.4.0):** Rediseño UI/UX (TailwindCSS), Internacionalización (I18n), y Auditoría Final (OWASP/Lighthouse/JUnit).
+* [ ] **Fase 6 (v1.5.0):** Implementación de parches visuales (Aspect Ratio de avatares reportado por Lighthouse), actualización oficial a Java 21 y resolución de observaciones manuales de QA.
 
 ---
 

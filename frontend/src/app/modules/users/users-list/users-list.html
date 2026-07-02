@@ -45,7 +45,7 @@
           <td class="h-px w-px whitespace-nowrap px-6 py-4">
             <div class="flex items-center gap-x-3">
               <div class="relative">
-                <img class="inline-block h-10 w-10 rounded-full shadow-sm" src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0F172A&color=fff" alt="Avatar">
+                <img class="inline-block h-10 w-10 rounded-full shadow-sm aspect-square object-cover" src="https://ui-avatars.com/api/?name={{user.fullName}}&background=0F172A&color=fff" alt="Avatar">
                 <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white"
                       [class.bg-green-500]="user.status === 'ACTIVO'" 
                       [class.bg-red-500]="user.status === 'INACTIVO'"></span>

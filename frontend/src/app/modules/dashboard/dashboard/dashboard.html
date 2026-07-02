@@ -83,7 +83,7 @@
         <div class="flex flex-col gap-y-4">
           <div *ngFor="let res of recentReservations" class="flex items-center gap-x-4 pb-4 border-b border-gray-50 last:border-0 last:pb-0">
             <div class="relative">
-              <img class="inline-block h-[2.875rem] w-[2.875rem] rounded-full" src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" alt="Avatar">
+              <img class="inline-block h-[2.875rem] w-[2.875rem] rounded-full aspect-square object-cover" src="https://ui-avatars.com/api/?name={{res.customerName}}&background=F1F5F9&color=64748B" alt="Avatar">
               <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-white"
                     [class.bg-green-500]="res.status === 'CONFIRMADA'" 
                     [class.bg-amber-400]="res.status === 'PENDIENTE'"></span>

@@ -43,7 +43,7 @@
         <tr *ngFor="let res of reservations$ | async" class="hover:bg-gray-50 transition-colors">
           <td class="h-px w-px whitespace-nowrap px-6 py-4">
             <div class="flex items-center gap-x-3">
-              <img class="inline-block h-9 w-9 rounded-full shadow-sm" src="https://ui-avatars.com/api/?name={{res.customerName}}&background=0F172A&color=fff" alt="Avatar">
+              <img class="inline-block h-9 w-9 rounded-full shadow-sm aspect-square object-cover" src="https://ui-avatars.com/api/?name={{res.customerName}}&background=0F172A&color=fff" alt="Avatar">
               <div>
                 <span class="block text-sm font-semibold text-gray-800">{{res.customerName}}</span>
                 <span class="block text-xs text-gray-500">#{{res.id}}</span>

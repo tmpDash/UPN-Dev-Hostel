@@ -11,6 +11,35 @@ Este proyecto es una aplicación Full-Stack profesional diseñada para la gesti�
 
 ---
 
+## 🌐 Despliegue en Producción
+
+| Componente | Plataforma | URL / Configuración |
+| :--- | :--- | :--- |
+| **Frontend Angular** | Cloudflare Workers (Static Assets) | [upn-dev-hostel.archer-2312.workers.dev](https://upn-dev-hostel.archer-2312.workers.dev) |
+| **Backend Spring Boot** | Render | [hotel-luxury-api.onrender.com/api](https://hotel-luxury-api.onrender.com/api) |
+| **Swagger / OpenAPI** | Render | [Documentación de la API](https://hotel-luxury-api.onrender.com/api/swagger-ui/index.html) |
+| **Base de datos MySQL 8.4** | Aiven | Servicio administrado; las credenciales se almacenan como variables de entorno en Render. |
+
+### Configuración aplicada
+
+- El frontend se compila desde `frontend/` y consume `https://hotel-luxury-api.onrender.com/api` mediante el environment de producción.
+- `wrangler.jsonc` publica `frontend/dist/hotel-reservas-web/browser` y configura el fallback de rutas para la SPA de Angular.
+- Cloudflare ejecuta `npm --prefix frontend ci && npm --prefix frontend run build` y despliega con `npx wrangler deploy` por cada actualización de `main`.
+- Render utiliza `DB_URL`, `DB_USER`, `DB_PASSWORD` y `JWT_SECRET` sin exponer secretos en el repositorio.
+- Los orígenes autorizados se configuran en Render mediante `CORS_ALLOWED_ORIGINS`. El origen de producción actual es `https://upn-dev-hostel.archer-2312.workers.dev`.
+- La autenticación utiliza JWT y el interceptor de Angular envía el token como `Authorization: Bearer <token>`.
+- Los datos iniciales de hoteles, servicios, usuarios y reservas se encuentran en `backend/src/main/resources/import.sql` y fueron cargados en Aiven.
+
+> **Arranque en frío de Render:** el plan gratuito suspende el backend después de un periodo sin actividad. La primera solicitud o el primer inicio de sesión puede tardar aproximadamente entre 45 y 90 segundos mientras la API vuelve a iniciar. Las solicitudes posteriores funcionan normalmente.
+
+### Validación del despliegue
+
+- Compilación Angular de producción completada correctamente.
+- Suite backend: **80 pruebas aprobadas, 0 fallos**.
+- Login, emisión de JWT, rutas SPA, imágenes y acceso al dashboard validados desde la URL pública.
+
+---
+
 ## 🛠️ Requerimientos del Sistema
 Para ejecutar este proyecto localmente, asegúrese de tener instalado:
 - **Java JDK 21** o superior.
@@ -31,7 +60,7 @@ CREATE DATABASE db_hotel_reservas;
 
 ### 2. Backend (Spring Boot)
 1. Navegue a la carpeta `backend/`.
-2. Abra `src/main/resources/application.properties` y configure su `username` y `password` de MySQL.
+2. Configure las variables de entorno `DB_URL`, `DB_USER`, `DB_PASSWORD` y `JWT_SECRET` para su instancia local de MySQL.
 3. Ejecute el proyecto:
    ```bash
    mvn spring-boot:run

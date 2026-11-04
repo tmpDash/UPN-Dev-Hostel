@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 export interface User {
   id: number;
@@ -16,7 +17,7 @@ export interface User {
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser$: Observable<User | null>;
-  private apiUrl = 'http://localhost:8087/api';
+  private readonly apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     const savedUser = localStorage.getItem('currentUser');

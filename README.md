@@ -1,13 +1,68 @@
 # 🏨 Sistema de Gestión Hotelera - Hotel Luxury
 
-Este proyecto es una aplicación Full-Stack profesional diseñada para la gestión de reservas, huéspedes y servicios de una cadena hotelera. Implementa una arquitectura moderna, segura y escalable.
+Este proyecto es una solución **Full-Stack empresarial** diseñada para automatizar y optimizar la gestión integral de una cadena hotelera. Permite administrar de forma centralizada sedes hoteleras, habitaciones, reservas de huéspedes, catálogo de servicios adicionales y el control del personal operativo y administrativo.
 
-## 🚀 Características Principales
-- **Arquitectura N-Capas**: Separación clara de responsabilidades (Controller, Service, Repository, Model).
-- **Seguridad Robusta**: Autenticación y Autorización basada en **JWT (JSON Web Tokens)** y Spring Security.
-- **Diseño Premium**: Interfaz moderna en Angular con estética "Luxury Concierge".
-- **Control de Acceso (RBAC)**: Gestión de permisos según roles (ADMIN, RECEPCIONISTA, SUPERVISOR, LIMPIEZA).
-- **Documentación Interactiva**: API documentada con **Swagger UI**.
+---
+
+## 📖 ¿De qué trata el proyecto? (Visión General)
+
+El sector hotelero moderno requiere una sincronización fluida entre la atención en mostrador (recepción), la prestación de comodidades (amenities/servicios) y la toma de decisiones gerenciales. **Hotel Luxury** resuelve esta necesidad eliminando registros manuales propensos a error, calculando automáticamente costos por estancia y consumos, y garantizando la trazabilidad y seguridad en cada operación.
+
+### 🎯 Problemas clave que resuelve
+1. **Pérdida de control en consumos adicionales:** Integra en una sola cuenta los servicios consumidos por el huésped (spa, restaurante, movilidad, lavandería) junto con el costo del hospedaje.
+2. **Inconsistencias en disponibilidad y reservas:** Valida fechas de estancia (check-in y check-out) e impide estados lógicos erróneos.
+3. **Seguridad y segregación de funciones:** Evita que personal no autorizado modifique tarifas o acceda a reportes financieros mediante un control estricto de accesos por roles.
+4. **Visibilidad del negocio:** Proporciona indicadores claros de ocupación mensual y servicios más rentables.
+
+---
+
+## 🧩 Módulos y Funcionalidades del Sistema
+
+### 1. 🏨 Gestión de Sedes Hoteleras
+* Catálogo de hoteles de la cadena (ej. Sedes Lima, Cusco, Arequipa, Trujillo, Iquitos).
+* Registro de capacidad física, cantidad total de habitaciones, dirección y ciudad.
+
+### 2. 📅 Motor de Reservas y Facturación
+* **Registro de Estancia:** Captura de datos del huésped, fechas de entrada (*Check-in*) y salida (*Check-out*).
+* **Tipos de Habitación:** Soporte para habitaciones `SIMPLE`, `DOBLE` y `SUITE`.
+* **Cálculo Dinámico de Tarifas:** Computa automáticamente el costo por noches de hospedaje sumado a los servicios adicionales cargados a la habitación.
+* **Ciclo de Estados de Reserva:**
+  * `PENDIENTE`: Registro inicial a la espera de confirmación o pago.
+  * `CONFIRMADA`: Reserva garantizada lista para recepción.
+  * `COMPLETADA`: Estancia finalizada con liquidación total de consumos (*Check-out*).
+  * `CANCELADA`: Anulación de la reserva liberando la disponibilidad.
+
+### 3. 🛎️ Catálogo de Servicios Adicionales (Upselling & Amenities)
+* Gestión de amenidades organizadas por categorías de negocio:
+  * **FOOD:** Restaurante Gourmet, Room Service 24h.
+  * **WELLNESS:** Spa & Sauna terapéutico, Piscina Climatizada.
+  * **TRANSPORT:** Traslados privados al aeropuerto, Tours arqueológicos.
+  * **GENERAL:** Lavandería express, Wi-Fi Premium, Alquiler de bicicletas.
+* Vinculación directa a reservas activas especificando cantidad consumida y precio congelado al momento del consumo.
+
+### 4. 📊 Dashboard Analítico y Reportes Gerenciales
+* Métricas operativas en tiempo real:
+  * Tasa de ocupación mensual proyectada e histórica.
+  * Desglose de ingresos por categoría de servicios adicionales.
+  * Indicadores de reservas activas, pendientes y canceladas.
+
+### 5. 👥 Gestión de Personal y Control de Acceso (RBAC)
+Cada usuario pertenece a un perfil con permisos específicos para proteger la integridad operativa:
+
+| Rol | Alcance y Responsabilidades |
+| :--- | :--- |
+| **Administrador (`ADMIN`)** | Control total del sistema: gestión de usuarios/staff, configuración de hoteles, supervisión de reservas, catálogo de servicios y acceso a reportes financieros. |
+| **Supervisor (`SUPERVISOR`)** | Supervisión operativa: consulta y auditoría de reservas, catálogo de servicios e inspección de reportes de ocupación y rendimiento. |
+| **Recepcionista (`RECEPCIONISTA`)** | Operación diaria en mostrador: registro de nuevos huéspedes, creación y edición de reservas, adición de consumos/servicios a reservas y gestión de check-in / check-out. |
+| **Personal de Limpieza (`LIMPIEZA`)** | Soporte operativo: visualización del panel general y seguimiento del estado operativo de las habitaciones e instalaciones. |
+
+---
+
+## 🚀 Características Técnicas Principales
+- **Arquitectura N-Capas**: Separación estricta de responsabilidades en backend (Controller, Service, Repository, DTO, Model).
+- **Seguridad Robusta**: Autenticación y Autorización basada en **JWT (JSON Web Tokens)** con Spring Security stateless.
+- **Diseño Premium**: Interfaz moderna en Angular con estética *Luxury Concierge* (TailwindCSS + Preline UI).
+- **Documentación Interactiva**: API RESTful completamente documentada e interactiva con **Swagger / OpenAPI 3.0**.
 
 ---
 

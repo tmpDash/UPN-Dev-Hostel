@@ -71,3 +71,10 @@ target/
 secrets.properties
 credentials.xml
 
+# =========================================================================
+# LOCAL DOCUMENTATION & WORKING DRAFTS (Large Binaries & Scripts)
+# =========================================================================
+Docs-Class/
+*.pdf
+*.docx
+*.ps1

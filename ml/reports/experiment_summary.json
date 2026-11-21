@@ -1,0 +1,32 @@
+{
+  "capacity": 180,
+  "reservations": 12282,
+  "daily_start": "2024-01-01",
+  "daily_end": "2026-10-31",
+  "horizons": {
+    "7": {
+      "model_name": "M2: Random Forest",
+      "horizon": 7,
+      "capacity": 180,
+      "residual_quantiles": {
+        "p10": -13.781960459376345,
+        "p90": 6.174207485848279
+      },
+      "validation_coverage": 0.8,
+      "confidence": "alta",
+      "training_origin_end": "2026-10-24"
+    },
+    "30": {
+      "model_name": "M2: Random Forest",
+      "horizon": 30,
+      "capacity": 180,
+      "residual_quantiles": {
+        "p10": -11.434171745119365,
+        "p90": 6.227033379854442
+      },
+      "validation_coverage": 0.8,
+      "confidence": "alta",
+      "training_origin_end": "2026-10-01"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+data/raw/*.csv
+data/raw/*.json
+models/*.joblib
+.ipynb_checkpoints/
+__pycache__/
+

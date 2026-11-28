@@ -1,0 +1,5 @@
+horizonte,modelo,MAE_habitaciones,RMSE_habitaciones,sesgo_habitaciones,n_test
+7,RF_sin_clustering,6.484,8.398,0.5792,180
+7,RF_con_clustering,6.5215,8.5407,0.6734,180
+30,RF_sin_clustering,7.0087,9.0763,0.5498,157
+30,RF_con_clustering,7.0072,9.0826,0.5541,157

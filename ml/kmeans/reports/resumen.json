@@ -1,0 +1,13 @@
+{
+  "origen": "demo_independiente",
+  "nota": "No corresponde al experimento original del repositorio",
+  "semilla": 42,
+  "mejora_pct_por_horizonte": {
+    "7": -0.578,
+    "30": 0.021
+  },
+  "k_por_horizonte": {
+    "7": 2,
+    "30": 2
+  }
+}

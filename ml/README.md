@@ -94,3 +94,7 @@ La carga es sintética y debe declararse así en el informe académico. Antes de
 
 Los archivos `joblib` solo deben cargarse si fueron generados por este proyecto; este formato no es seguro para artefactos de origen desconocido.
 
+
+## Extensión de aprendizaje no supervisado
+
+El [experimento K-Means](kmeans/README.md) usa una serie diaria sintética independiente y reúne su propio notebook, métricas y gráficos.
